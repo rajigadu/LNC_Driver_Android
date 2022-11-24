@@ -1,0 +1,714 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    tools:context=".activity.Login">
+
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include
+            android:id="@+id/topbar"
+            layout="@layout/top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/signup"
+        android:layout_below="@+id/toolbar">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/ptitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_10"
+                android:layout_marginRight="@dimen/margin_10"
+                android:layout_marginTop="@dimen/margin_10"
+                android:background="@color/white_full"
+                android:drawableRight="@drawable/down"
+                android:gravity="center_vertical"
+                android:padding="@dimen/margin_10"
+                android:text="@string/pinfo"
+                android:textColor="@color/black_light"
+                android:textSize="@dimen/text_mediumsize" />
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ptitle"
+                android:layout_marginBottom="10dp">
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cardView1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_20"
+                    android:layout_marginRight="@dimen/margin_20"
+                    android:backgroundTint="#33ffffff"
+                    android:elevation="@dimen/margin_10"
+                    android:visibility="visible"
+                    app:cardCornerRadius="@dimen/margin_05">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_10"
+                        android:layout_marginRight="@dimen/margin_10"
+                        android:layout_marginTop="@dimen/margin_10"
+                        android:paddingBottom="@dimen/margin_10">
+
+                        <com.lncdriver.utils.CircularImageView
+                            android:id="@+id/pimg"
+                            android:layout_width="102dp"
+                            android:layout_height="102dp"
+                            android:layout_marginTop="@dimen/margin_10"
+                            android:layout_centerHorizontal="true"
+                            android:src="@drawable/profile"
+                            app:civ_border_width="1dp"
+                            app:civ_border_color="@color/green"
+                            />
+
+
+                        <ImageView
+                            android:id="@+id/pimage_add"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/pimg"
+                            android:layout_toRightOf="@+id/pimg"
+                            android:layout_marginLeft="-10dp"
+                            android:src="@drawable/add" />
+
+                        <EditText
+                            android:id="@+id/fname"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/pimg"
+                            android:layout_marginLeft="@dimen/margin_10"
+                            android:layout_marginRight="@dimen/margin_10"
+                            android:layout_marginTop="@dimen/margin_10"
+                            android:background="@drawable/button_border_round"
+                            android:drawableLeft="@drawable/user"
+                            android:drawablePadding="@dimen/margin_10"
+                            android:hint="Enter First Name"
+                            android:inputType="textNoSuggestions"
+                            android:padding="@dimen/padding_10"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/black_light"
+                            android:textSize="@dimen/text_mediumsize" />
+
+                        <EditText
+                            android:id="@+id/lname"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/fname"
+                            android:layout_marginLeft="@dimen/margin_10"
+                            android:layout_marginRight="@dimen/margin_10"
+                            android:layout_marginTop="@dimen/margin_10"
+                            android:background="@drawable/button_border_round"
+                            android:drawableLeft="@drawable/user"
+                            android:drawablePadding="@dimen/margin_10"
+                            android:hint="Enter Last Name"
+                            android:inputType="textNoSuggestions"
+                            android:padding="@dimen/padding_10"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/black_light"
+                            android:textSize="@dimen/text_mediumsize" />
+
+                        <EditText
+                            android:id="@+id/email"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/lname"
+                            android:layout_marginLeft="@dimen/margin_10"
+                            android:layout_marginRight="@dimen/margin_10"
+                            android:layout_marginTop="@dimen/margin_10"
+                            android:background="@drawable/button_border_round"
+                            android:drawableLeft="@drawable/email"
+                            android:drawablePadding="@dimen/margin_10"
+                            android:hint="Enter Email Address"
+                            android:inputType="textEmailAddress"
+                            android:padding="@dimen/padding_10"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/black_light"
+                            android:textSize="@dimen/text_mediumsize" />
+
+                        <EditText
+                            android:id="@+id/mobile"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/email"
+                            android:layout_marginLeft="@dimen/margin_10"
+                            android:layout_marginRight="@dimen/margin_10"
+                            android:layout_marginTop="@dimen/margin_10"
+                            android:background="@drawable/button_border_round"
+                            android:drawableLeft="@drawable/phone"
+                            android:drawablePadding="@dimen/margin_10"
+                            android:hint="Enter Mobile number"
+                            android:inputType="number"
+                            android:maxLength="10"
+                            android:padding="@dimen/padding_10"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/black_light"
+                            android:textSize="@dimen/text_mediumsize" />
+
+                        <EditText
+                            android:id="@+id/dob11"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/mobile"
+                            android:layout_marginLeft="@dimen/margin_10"
+                            android:layout_marginRight="@dimen/margin_10"
+                            android:layout_marginTop="@dimen/margin_10"
+                            android:background="@drawable/button_border_round"
+                            android:clickable="false"
+                            android:drawableLeft="@drawable/calendar"
+                            android:drawablePadding="@dimen/margin_10"
+                            android:focusableInTouchMode="false"
+                            android:hint="Date of birth"
+                            android:padding="@dimen/padding_10"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/black_light"
+                            android:textSize="@dimen/text_mediumsize"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/dob_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/mobile"
+                            android:layout_marginLeft="@dimen/margin_10"
+                            android:layout_marginRight="@dimen/margin_10"
+                            android:layout_marginTop="@dimen/margin_10"
+                            android:text="Date of birth"
+                            android:textColor="@color/white_full"
+                            android:textSize="@dimen/text_largesize" />
+
+                        <com.mikhaellopez.lazydatepicker.LazyDatePicker
+                            android:id="@+id/dob"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/dob_title"
+                            android:layout_marginLeft="@dimen/margin_10"
+                            android:layout_marginRight="@dimen/margin_10"
+                            android:layout_marginTop="@dimen/margin_10"
+                            android:background="@drawable/button_border_round"
+                            android:padding="@dimen/padding_10"
+                            android:textColorHint="@color/black_light"
+                            app:ldp_date_format="mm-dd-yyyy"
+                            app:ldp_hint_color="@color/colorAccent"
+                            app:ldp_text_color="@color/colorPrimary" />
+
+                        <EditText
+                            android:id="@+id/address"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/dob"
+                            android:layout_marginLeft="@dimen/margin_10"
+                            android:layout_marginRight="@dimen/margin_10"
+                            android:layout_marginTop="@dimen/margin_10"
+                            android:background="@drawable/button_border_round"
+                            android:clickable="false"
+                            android:drawableLeft="@drawable/address"
+                            android:drawablePadding="@dimen/margin_10"
+                            android:focusableInTouchMode="false"
+                            android:hint="Home address"
+                            android:inputType="text"
+                            android:padding="@dimen/padding_10"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/black_light"
+                            android:textSize="@dimen/text_mediumsize"
+                            android:visibility="visible" />
+
+                        <EditText
+                            android:id="@+id/password"
+                            android:layout_width="match_parent"
+                            android:layout_height="46dp"
+                            android:layout_below="@+id/address"
+                            android:layout_marginEnd="@dimen/margin_10"
+                            android:layout_marginStart="@dimen/margin_10"
+                            android:layout_marginTop="@dimen/margin_10"
+                            android:background="@drawable/button_border_round"
+                            android:drawableLeft="@drawable/lock"
+                            android:drawablePadding="@dimen/margin_10"
+                            android:hint="Enter Password"
+                            android:inputType="textPassword"
+                            android:padding="@dimen/padding_10"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/black_light"
+                            android:textSize="@dimen/text_mediumsize" />
+
+                        <EditText
+                            android:id="@+id/cpassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/password"
+                            android:layout_marginEnd="@dimen/margin_10"
+                            android:layout_marginStart="@dimen/margin_10"
+                            android:layout_marginTop="@dimen/margin_10"
+                            android:background="@drawable/button_border_round"
+                            android:drawableLeft="@drawable/lock"
+                            android:drawablePadding="@dimen/margin_10"
+                            android:hint="Confirm Password"
+                            android:inputType="textPassword"
+                            android:padding="@dimen/padding_10"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/black_light"
+                            android:textSize="@dimen/text_mediumsize" />
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
+
+                <TextView
+                    android:id="@+id/vehicleinfotitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/cardView1"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_marginRight="@dimen/margin_10"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:background="@color/white_full"
+                    android:drawableRight="@drawable/down"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/margin_10"
+                    android:text="@string/vehicleinfo"
+                    android:textColor="@color/black_light"
+                    android:textSize="@dimen/text_mediumsize" />
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cardView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/vehicleinfotitle"
+                    android:layout_marginLeft="@dimen/margin_20"
+                    android:layout_marginRight="@dimen/margin_20"
+                    android:backgroundTint="#33ffffff"
+                    android:elevation="@dimen/margin_10"
+                    android:visibility="visible"
+                    app:cardCornerRadius="@dimen/margin_05">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_10"
+                        android:layout_marginRight="@dimen/margin_10"
+                        android:layout_marginTop="@dimen/margin_10"
+                        android:paddingBottom="@dimen/margin_10">
+
+                        <EditText
+                            android:id="@+id/vtype"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/margin_10"
+                            android:layout_marginRight="@dimen/margin_10"
+                            android:layout_marginTop="@dimen/margin_10"
+                            android:background="@drawable/button_border_round"
+                            android:hint="Vehicle type"
+                            android:inputType="textNoSuggestions"
+                            android:padding="@dimen/padding_10"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/black_light"
+                            android:textSize="@dimen/text_mediumsize" />
+
+                        <EditText
+                            android:id="@+id/vmodel"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/vtype"
+                            android:layout_marginLeft="@dimen/margin_10"
+                            android:layout_marginRight="@dimen/margin_10"
+                            android:layout_marginTop="@dimen/margin_10"
+                            android:background="@drawable/button_border_round"
+                            android:hint="Vehicle model"
+                            android:inputType="textNoSuggestions"
+                            android:padding="@dimen/padding_10"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/black_light"
+                            android:textSize="@dimen/text_mediumsize" />
+
+                        <EditText
+                            android:id="@+id/myear"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/vmodel"
+                            android:layout_marginLeft="@dimen/margin_10"
+                            android:layout_marginRight="@dimen/margin_10"
+                            android:layout_marginTop="@dimen/margin_10"
+                            android:background="@drawable/button_border_round"
+                            android:hint="Making year"
+                            android:inputType="textEmailAddress"
+                            android:padding="@dimen/padding_10"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/black_light"
+                            android:textSize="@dimen/text_mediumsize" />
+
+                        <Button
+                            android:id="@+id/vbrowse"
+                            style="@style/MaterialAnimations.Buttonorange"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_below="@+id/myear"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="@dimen/margin_10"
+                            android:layout_marginLeft="@dimen/margin_10"
+                            android:layout_marginRight="@dimen/margin_10"
+                            android:layout_marginTop="@dimen/margin_10"
+                            android:text="Browse"
+                            android:textColor="@color/white_full"
+                            android:visibility="visible" />
+
+                        <ImageView
+                            android:id="@+id/vimage"
+                            android:layout_width="100dp"
+                            android:layout_height="50dp"
+                            android:layout_below="@+id/myear"
+                            android:layout_marginTop="@dimen/margin_10"
+                            android:layout_toRightOf="@+id/vbrowse"
+                            android:src="@drawable/profile" />
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <TextView
+                    android:id="@+id/verificationdoctitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/cardView2"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_marginRight="@dimen/margin_10"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:background="@color/white_full"
+                    android:drawableRight="@drawable/down"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/margin_10"
+                    android:text="@string/documents"
+                    android:textColor="@color/black_light"
+                    android:textSize="@dimen/text_mediumsize" />
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cardView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/verificationdoctitle"
+                    android:layout_marginLeft="@dimen/margin_20"
+                    android:layout_marginRight="@dimen/margin_20"
+                    android:backgroundTint="#33ffffff"
+                    android:elevation="@dimen/margin_10"
+                    android:visibility="visible"
+                    app:cardCornerRadius="@dimen/margin_05">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_10"
+                        android:layout_marginRight="@dimen/margin_10"
+                        android:layout_marginTop="@dimen/margin_10"
+                        android:paddingBottom="@dimen/margin_10">
+
+                        <LinearLayout
+                            android:id="@+id/ll_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="3">
+
+                            <ImageView
+                                android:id="@+id/pprofimg"
+                                android:layout_width="0dp"
+                                android:layout_height="50dp"
+                                android:layout_weight="0.5"
+                                android:src="@drawable/empty" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_weight="2"
+                                android:gravity="center"
+                                android:text="Proof of Insurance"
+                                android:textColor="@color/black_light"
+                                android:textSize="@dimen/text_mediumsize" />
+
+                            <ImageView
+                                android:id="@+id/add1"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_weight="0.5"
+                                android:src="@drawable/add" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/ll_1"
+                            android:layout_marginTop="@dimen/margin_20"
+                            android:orientation="horizontal"
+                            android:weightSum="3">
+
+                            <ImageView
+                                android:id="@+id/lprofimg"
+                                android:layout_width="0dp"
+                                android:layout_height="50dp"
+                                android:layout_weight="0.5"
+                                android:src="@drawable/empty" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_weight="2"
+                                android:gravity="center"
+                                android:text="Copy of Drivers License"
+                                android:textColor="@color/black_light"
+                                android:textSize="@dimen/text_mediumsize" />
+
+                            <ImageView
+                                android:id="@+id/add2"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_weight="0.5"
+                                android:src="@drawable/add" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/ll_2"
+                            android:layout_marginTop="@dimen/margin_20"
+                            android:orientation="horizontal"
+                            android:weightSum="3">
+
+                            <ImageView
+                                android:id="@+id/img_antract"
+                                android:layout_width="0dp"
+                                android:layout_height="50dp"
+                                android:layout_weight="0.5"
+                                android:src="@drawable/empty" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_weight="2"
+                                android:gravity="center"
+                                android:text="Driving Record"
+                                android:textColor="@color/black_light"
+                                android:textSize="@dimen/text_mediumsize" />
+
+                            <ImageView
+                                android:id="@+id/add3"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_weight="0.5"
+                                android:src="@drawable/add" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/ll_3"
+                            android:layout_marginTop="@dimen/margin_10"
+                            android:orientation="vertical">
+
+                            <CheckBox
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:checked="false"
+                                android:text="@string/criminal_background_check"
+                                android:textColor="@color/white1" />
+
+                            <CheckBox
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/margin_10"
+                                android:checked="false"
+                                android:text="@string/certification_declaration"
+                                android:textColor="@color/white1" />
+
+                            <CheckBox
+                                android:id="@+id/cb_w9_form"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/margin_10"
+                                android:checked="false"
+                                android:text="@string/w9_form"
+                                android:textColor="@color/white1" />
+
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
+
+                <TextView
+                    android:id="@+id/banktitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/cardView3"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_marginRight="@dimen/margin_10"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:background="@color/white_full"
+                    android:drawableRight="@drawable/down"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/margin_10"
+                    android:text="@string/bank"
+                    android:textColor="@color/black_light"
+                    android:textSize="@dimen/text_mediumsize"
+                    android:visibility="gone" />
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cardView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/banktitle"
+                    android:layout_marginLeft="@dimen/margin_20"
+                    android:layout_marginRight="@dimen/margin_20"
+                    android:backgroundTint="#33ffffff"
+                    android:elevation="@dimen/margin_10"
+                    android:visibility="gone"
+                    app:cardCornerRadius="@dimen/margin_05">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_10"
+                        android:layout_marginRight="@dimen/margin_10"
+                        android:layout_marginTop="@dimen/margin_10"
+                        android:paddingBottom="@dimen/margin_10">
+
+                        <EditText
+                            android:id="@+id/accnno"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/margin_10"
+                            android:layout_marginRight="@dimen/margin_10"
+                            android:layout_marginTop="@dimen/margin_10"
+                            android:background="@drawable/button_border_round"
+                            android:hint="A/C Number"
+                            android:inputType="numberPassword"
+                            android:padding="@dimen/padding_10"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/black_light"
+                            android:textSize="@dimen/text_mediumsize" />
+
+                        <EditText
+                            android:id="@+id/accnno_one"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/accnno"
+                            android:layout_marginLeft="@dimen/margin_10"
+                            android:layout_marginRight="@dimen/margin_10"
+                            android:layout_marginTop="@dimen/margin_10"
+                            android:background="@drawable/button_border_round"
+                            android:hint="Re enter A/C Number"
+                            android:inputType="number"
+                            android:padding="@dimen/padding_10"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/black_light"
+                            android:textSize="@dimen/text_mediumsize" />
+
+                        <EditText
+                            android:id="@+id/routingnum"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/accnno_one"
+                            android:layout_marginLeft="@dimen/margin_10"
+                            android:layout_marginRight="@dimen/margin_10"
+                            android:layout_marginTop="@dimen/margin_10"
+                            android:background="@drawable/button_border_round"
+                            android:hint="Routing number"
+                            android:inputType="textNoSuggestions"
+                            android:padding="@dimen/padding_10"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/black_light"
+                            android:textSize="@dimen/text_mediumsize" />
+
+                        <EditText
+                            android:id="@+id/npc"
+                            android:layout_width="match_parent"
+                            android:layout_height="46dp"
+                            android:layout_below="@+id/routingnum"
+                            android:layout_marginEnd="@dimen/margin_10"
+                            android:layout_marginStart="@dimen/margin_10"
+                            android:layout_marginTop="@dimen/margin_10"
+                            android:background="@drawable/button_border_round"
+                            android:hint="NPC account"
+                            android:inputType="textNoSuggestions"
+                            android:padding="@dimen/padding_10"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/black_light"
+                            android:textSize="@dimen/text_mediumsize"
+                            android:visibility="gone" />
+
+                        <EditText
+                            android:id="@+id/type"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/npc"
+                            android:layout_marginEnd="@dimen/margin_10"
+                            android:layout_marginStart="@dimen/margin_10"
+                            android:layout_marginTop="@dimen/margin_10"
+                            android:background="@drawable/button_border_round"
+                            android:clickable="false"
+                            android:drawableRight="@drawable/down"
+                            android:focusableInTouchMode="false"
+                            android:hint="account type"
+                            android:inputType="textNoSuggestions"
+                            android:padding="@dimen/padding_10"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/black_light"
+                            android:textSize="@dimen/text_mediumsize" />
+
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
+
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+
+    <Button
+        android:id="@+id/signup"
+        style="@style/MaterialAnimations.Buttonblack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:paddingBottom="@dimen/margin_20"
+        android:paddingTop="@dimen/margin_20"
+        android:text="@string/signup"
+        android:textColor="@color/white_full"
+        android:textSize="@dimen/text_mediumsize"
+        android:visibility="visible" />
+
+    <WebView
+        android:id="@+id/w9_web_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:visibility="gone">
+
+    </WebView>
+
+
+</RelativeLayout>
+
+
+

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/rootlo"
+    android:elevation="@dimen/margin_20"
+    app:cardCornerRadius="@dimen/margin_20"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/off_white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/off_white"
+        android:padding="@dimen/margin_05"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:background="@color/color_toolbar"
+            android:gravity="center|center_vertical"
+            android:layout_margin="@dimen/padding_05"
+            android:visibility="visible">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:gravity="center_vertical"
+                android:text="Rakoon Food Delivery"
+                android:layout_marginLeft="@dimen/padding_10"
+                android:textColor="@color/white_full"
+                android:textSize="@dimen/text_largesize" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_gif"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/padding_10"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/rtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                android:layout_marginBottom="@dimen/padding_10"
+                android:inputType="textMultiLine"
+                android:layout_centerHorizontal="true"
+                android:textStyle="bold"
+                android:text="Looking for Driver"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_largesize" />
+
+            <TextView
+                android:id="@+id/car_transmission"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_05"
+                android:layout_below="@+id/rtitle"
+                android:layout_marginBottom="@dimen/padding_10"
+                android:inputType="textMultiLine"
+                android:layout_centerHorizontal="true"
+                android:textStyle="bold"
+                android:text="Looking for Driver"
+                android:textColor="@color/green"
+                android:textSize="@dimen/text_largesize" />
+
+            <ImageView
+                android:id="@+id/imggif"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/car_transmission"
+                android:src="@drawable/color_background"/>
+
+            <TextView
+                android:id="@+id/timertxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_below="@+id/car_transmission"
+                android:padding="@dimen/margin_05"
+                android:inputType="textMultiLine"
+                android:textStyle="bold"
+                android:text="ghjghjh"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_mediumsize" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/imagetxtview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/padding_10"
+            android:orientation="vertical"
+            android:paddingBottom="12dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="12dp">
+
+
+            <TextView
+                android:id="@+id/desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center_horizontal"
+                android:padding="3dp"
+                android:layout_marginTop="@dimen/margin_10"
+                android:inputType="textMultiLine"
+                android:textStyle="bold"
+                android:text="ghjghjgjhgjh"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_mediumsize" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/m_btn"
+            android:layout_width="match_parent"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_10"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/attend"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Accept"
+                android:textAllCaps="false"
+                android:background="@color/green"
+                android:textColor="@color/white_full"
+                android:textSize="@dimen/text_mediumsize" />
+
+            <Button
+                android:id="@+id/cancel"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Reject"
+                android:layout_marginLeft="@dimen/margin_10"
+                android:textAllCaps="false"
+                android:background="@color/red"
+                android:textColor="@color/white_full"
+                android:textSize="@dimen/text_mediumsize" />
+        </LinearLayout>
+    </LinearLayout>
+</android.support.v7.widget.CardView>

@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    tools:context=".activity.Login">
+
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include
+            android:id="@+id/topbar"
+            layout="@layout/top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:layout_above="@+id/submit">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp">
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cardView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_20"
+                    android:layout_marginRight="@dimen/margin_20"
+                    android:visibility="visible"
+                    android:backgroundTint="#33ffffff"
+                    android:elevation="@dimen/margin_10"
+                    app:cardCornerRadius="@dimen/margin_05">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_10"
+                        android:layout_marginRight="@dimen/margin_10"
+                        android:paddingBottom="@dimen/margin_10"
+                        android:layout_marginTop="@dimen/margin_10">
+
+                        <EditText
+                            android:id="@+id/vtype"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="@dimen/margin_10"
+                            android:background="@drawable/button_border_round"
+                            android:hint="Vehicle type"
+                            android:inputType="textNoSuggestions"
+                            android:padding="@dimen/padding_10"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/black_light"
+                            android:textSize="@dimen/text_mediumsize"/>
+
+                        <EditText
+                            android:id="@+id/vmodel"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="@dimen/margin_10"
+                            android:background="@drawable/button_border_round"
+                            android:layout_below="@id/vtype"
+                            android:hint="Vehicle model"
+                            android:inputType="textNoSuggestions"
+                            android:padding="@dimen/padding_10"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/black_light"
+                            android:textSize="@dimen/text_mediumsize"/>
+
+                        <EditText
+                            android:id="@+id/myear"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="@dimen/margin_10"
+                            android:background="@drawable/button_border_round"
+                            android:layout_below="@id/vmodel"
+                            android:hint="year"
+                            android:inputType="textEmailAddress"
+                            android:padding="@dimen/padding_10"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/black_light"
+                            android:textSize="@dimen/text_mediumsize"/>
+
+                        <Button
+                            android:id="@+id/vbrowse"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="@dimen/margin_10"
+                            android:layout_marginBottom="10dp"
+                            style="@style/MaterialAnimations.Buttonorange"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginRight="10dp"
+                            android:layout_below="@+id/myear"
+                            android:visibility="visible"
+                            android:text="Browse"
+                            android:layout_marginLeft="10dp"
+                            android:textColor="@color/white_full"/>
+
+                        <ImageView
+                            android:id="@+id/vimage"
+                            android:layout_width="100dp"
+                            android:layout_height="50dp"
+                            android:layout_below="@+id/myear"
+                            android:layout_marginTop="@dimen/margin_10"
+                            android:layout_toRightOf="@+id/vbrowse"
+                            android:src="@drawable/profile"/>
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
+
+                <TextView
+                    android:id="@+id/verificationdoctitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black_light"
+                    android:drawableRight="@drawable/down"
+                    android:padding="@dimen/margin_10"
+                    android:layout_marginLeft="@dimen/margin_20"
+                    android:layout_marginRight="@dimen/margin_20"
+                    android:textSize="@dimen/text_mediumsize"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:background="@color/white_full"
+                    android:gravity="center_vertical"
+                    android:layout_below="@+id/cardView2"
+                    android:text="@string/vehicleinfo"/>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cardView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_20"
+                    android:layout_marginRight="@dimen/margin_20"
+                    android:visibility="visible"
+                    android:layout_below="@+id/verificationdoctitle"
+                    android:backgroundTint="#33ffffff"
+                    android:elevation="@dimen/margin_10"
+                    app:cardCornerRadius="@dimen/margin_05">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_10"
+                        android:layout_marginRight="@dimen/margin_10"
+                        android:paddingBottom="@dimen/margin_10"
+                        android:layout_marginTop="@dimen/margin_10">
+
+                        <LinearLayout
+                            android:id="@+id/ll_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="3">
+
+                            <ImageView
+                                android:id="@+id/pprofimg"
+                                android:layout_width="0dp"
+                                android:layout_weight="0.5"
+                                android:layout_height="50dp"
+                                android:src="@drawable/empty"/>
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="2"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:textColor="@color/black_light"
+                                android:textSize="@dimen/text_mediumsize"
+                                android:layout_gravity="center_vertical"
+                                android:text="Insurance copy"/>
+
+                            <ImageView
+                                android:id="@+id/add1"
+                                android:layout_width="0dp"
+                                android:layout_weight="0.5"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:src="@drawable/add"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/ll_2"
+                            android:layout_below="@+id/ll_1"
+                            android:layout_marginTop="@dimen/margin_20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="3">
+
+                            <ImageView
+                                android:id="@+id/lprofimg"
+                                android:layout_width="0dp"
+                                android:layout_weight="0.5"
+                                android:layout_height="50dp"
+                                android:src="@drawable/empty"/>
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="2"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:textColor="@color/black_light"
+                                android:textSize="@dimen/text_mediumsize"
+                                android:layout_gravity="center_vertical"
+                                android:text="Licensee copy"/>
+
+                            <ImageView
+                                android:id="@+id/add2"
+                                android:layout_width="0dp"
+                                android:layout_weight="0.5"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:src="@drawable/add"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_3"
+                            android:layout_below="@+id/ll_2"
+                            android:layout_marginTop="@dimen/margin_20"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="3">
+
+                            <ImageView
+                                android:id="@+id/img_antract"
+                                android:layout_width="0dp"
+                                android:layout_weight="0.5"
+                                android:layout_height="50dp"
+                                android:src="@drawable/empty"/>
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="2"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:textColor="@color/black_light"
+                                android:textSize="@dimen/text_mediumsize"
+                                android:layout_gravity="center_vertical"
+                                android:text="Abstract copy"/>
+
+                            <ImageView
+                                android:id="@+id/add3"
+                                android:layout_width="0dp"
+                                android:layout_weight="0.5"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:src="@drawable/add"/>
+                        </LinearLayout>
+
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
+
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/margin_10"
+        android:paddingBottom="@dimen/margin_10"
+        android:visibility="visible"
+        android:layout_alignParentBottom="true"
+        android:textSize="@dimen/text_mediumsize"
+        android:text="SUBMIT"
+        android:textColor="@color/white_full"
+        style="@style/MaterialAnimations.Buttonblack"/>
+
+</RelativeLayout>
+
+
+

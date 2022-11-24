@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_margin="@dimen/margin_10"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/off_white"
+        android:elevation="@dimen/margin_10"
+        android:clickable="false"
+        app:cardCornerRadius="@dimen/margin_15">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_05"
+        android:background="@color/off_white">
+
+        <Switch
+            android:id="@+id/active"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:layout_alignParentRight="true"/>
+
+        <LinearLayout
+            android:id="@+id/payments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/active"
+            android:weightSum="2"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="0.8"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/pidtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_margin="@dimen/margin_05"
+                    android:text="Name :"
+                    android:textSize="@dimen/text_largesize"/>
+
+                <TextView
+                    android:id="@+id/amounttitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_below="@+id/pidtitle"
+                    android:layout_margin="@dimen/margin_05"
+                    android:text="Number : "
+                    android:textSize="@dimen/text_largesize"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1.2"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/navigationBarColorAttempted"
+                    android:layout_margin="@dimen/margin_05"
+                    android:text=""
+                    android:textSize="@dimen/text_largesize"/>
+
+                <TextView
+                    android:id="@+id/number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryDark1"
+                    android:layout_below="@+id/pidtitle"
+                    android:layout_margin="@dimen/margin_05"
+                    android:text=""
+                    android:textSize="@dimen/text_largesize"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/payments">
+
+            <TextView
+                android:id="@+id/email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/sky_light"
+                android:layout_margin="@dimen/margin_05"
+                android:text=""
+                android:textSize="@dimen/text_largesize"/>
+        </RelativeLayout>
+
+    </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

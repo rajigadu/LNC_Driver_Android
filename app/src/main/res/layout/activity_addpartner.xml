@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    tools:context=".activity.Login">
+
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include
+            android:id="@+id/topbar"
+            layout="@layout/top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:layout_above="@id/signup">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/ptitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black_light"
+                android:drawableRight="@drawable/down"
+                android:padding="@dimen/margin_10"
+                android:layout_marginLeft="@dimen/margin_10"
+                android:layout_marginRight="@dimen/margin_10"
+                android:textSize="@dimen/text_mediumsize"
+                android:layout_marginTop="@dimen/margin_10"
+                android:layout_marginBottom="@dimen/margin_20"
+                android:background="@color/white_full"
+                android:gravity="center_vertical"
+                android:text="Partner Information "/>
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_below="@id/ptitle">
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cardView1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_20"
+                    android:layout_marginRight="@dimen/margin_20"
+                    android:visibility="visible"
+                    android:backgroundTint="#33ffffff"
+                    android:elevation="@dimen/margin_10"
+                    app:cardCornerRadius="@dimen/margin_05">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_10"
+                        android:layout_marginRight="@dimen/margin_10"
+                        android:paddingBottom="@dimen/margin_10"
+                        android:layout_marginTop="@dimen/margin_10" >
+
+                        <EditText
+                            android:id="@+id/name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="@dimen/margin_10"
+                            android:background="@drawable/button_border_round"
+                            android:drawableLeft="@drawable/user"
+                            android:drawablePadding="@dimen/margin_10"
+                            android:layout_below="@+id/pimg"
+                            android:hint="Enter name"
+                            android:inputType="textNoSuggestions"
+                            android:padding="@dimen/padding_10"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/black_light"
+                            android:textSize="@dimen/text_mediumsize" />
+
+                        <EditText
+                            android:id="@+id/mobile"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_below="@id/name"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="@dimen/margin_10"
+                            android:background="@drawable/button_border_round"
+                            android:drawableLeft="@drawable/call"
+                            android:drawablePadding="@dimen/margin_10"
+                            android:hint="Enter mobile number"
+                            android:inputType="number"
+                            android:padding="@dimen/padding_10"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/black_light"
+                            android:textSize="@dimen/text_mediumsize" />
+
+                        <EditText
+                            android:id="@+id/email"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="@dimen/margin_10"
+                            android:background="@drawable/button_border_round"
+                            android:drawableLeft="@drawable/email"
+                            android:layout_below="@id/mobile"
+                            android:drawablePadding="@dimen/margin_10"
+                            android:hint="Enter email address"
+                            android:inputType="textEmailAddress"
+                            android:padding="@dimen/padding_10"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/black_light"
+                            android:textSize="@dimen/text_mediumsize"/>
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:paddingTop="@dimen/margin_20"
+        android:paddingBottom="@dimen/margin_20"
+        android:visibility="visible"
+        android:textSize="@dimen/text_mediumsize"
+        android:text="SUBMIT"
+        android:textColor="@color/white_full"
+        style="@style/MaterialAnimations.Buttonblack"/>
+
+</RelativeLayout>
+
+
+

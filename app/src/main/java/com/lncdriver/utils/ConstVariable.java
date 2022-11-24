@@ -1,0 +1,102 @@
+package com.lncdriver.utils;
+
+/**
+ * Created by nari on 2/4/2017.
+ */
+public interface ConstVariable {
+
+    String URL = "url";
+    String SUCCESS = "success";
+    String MOBILE = "mobile";
+    String FULL_NAME = "fname";
+    String LAST_NAME = "lname";
+    String SUBARRAY2 = "data1";
+    String SUBARRAY = "data1";
+    String SUBARRAY1 = "data2";
+
+    String ID = "id";
+    String USERID = "userid";
+    String DRIVER_ID = "driverid";
+    String EMAIL = "email";
+    String PASSWORD = "password";
+    String MESSAGE = "msg";
+    String GOOGLE_API = "AIzaSyDac9yBJCmt8Tyry6JJ6GOvNQPx0_j76-o";//"AIzaSyDCFH15ywAAE8rds4oXHnBmFgpuZZxoIa4";
+
+    int Home = 100;
+    int Login = 0;
+    int ForgetPassword = 1;
+    int Registration = 2;
+    int ChangePassword = 3;
+    int SocialStatus = 4;
+    int Edit_Personal_Info = 5;
+    int Edit_Vehicle_Info = 6;
+    int DriverRole = 7;
+    int ContactUs = 8;
+    int SocialSignUp = 9;
+    int Log_Out = 11;
+    int AddBankAccount = 12;
+    int UserLocationUpdate = 13;
+    int Device_Token_Update = 14;
+    int DashBoard = 15;
+    int SignUp = 15;
+    int CurrentRide = 16;
+    int Payment_History = 17;
+    int New_Payment_History = 76;
+    int DriverOnlineRequest = 18;
+    int OnlineStatusRequest = 19;
+    int ServiceType = 20;
+    int RideHistory = 21;
+    int ActivatePartner = 22;
+    int DriverLocationUpdate = 23;
+    int DriverAccept = 24;
+    int UserChat = 25;
+    int RideComplete = 26;
+    int CCRide = 27;
+    int NRide = 271;
+    int PartnersList = 28;
+    int AddPartner = 29;
+    int GetPartnerORDriver = 30;
+    int PartnerLooking = 31;
+    int PartnerAccept = 32;
+    int Payment = 33;
+    int UserChatList = 34;
+    int DriverChatList = 35;
+    int DriverChat = 36;
+    int PartnerChatList = 37;
+    int PartnerChat = 38;
+    int ActivePartner = 39;
+    int AuthenticatePartner = 40;
+    int PartnerIntimation = 41;
+    int StopLocations = 42;
+    int EdtBankAccount = 43;
+    int GetVehicleInfo = 44;
+    int FutureRides = 45;
+    int DriverIncomingFutureRides = 47;
+    int PartnerIncomingFutureRides = 48;
+    int DriverFutureRides = 49;
+    int PartnerFutureRides = 50;
+    int DriverAcceptFutureRide = 51;
+    int PartnerAcceptFutureRide = 52;
+    int DriverFutureRideDetails = 53;
+    int GetEstimatePrice = 78;
+    int PartnerFutureRideDetails = 54;
+    int FutureRideComplete = 55;
+    int FuturePayment = 56;
+    int FRidePartnerIntimation = 57;
+    int FutureRideHistory = 58;
+    int PartnerFutureRideHistory = 59;
+    int Future_Ride_Start = 60;
+    int Cancel_Ride = 61;
+    int CancelFutureRide = 62;
+    int CurrentRideStart = 63;
+    int Waiting_Charge_Start = 64;
+    int Waiting_Charge_F_Ride_Start = 65;
+    int Pending_Current_Rides = 66;
+    int Cancel_Future_Ride_By_Partner = 67;
+    int User_Feed_Back = 68;
+    int Partner_Req_Type = 69;
+    int Service_Active_Partner = 70;
+    int Driver_Active_Partner = 71;
+    int Set_Additional_Stops = 74;
+    int Add_Waiting_Time = 75;
+}

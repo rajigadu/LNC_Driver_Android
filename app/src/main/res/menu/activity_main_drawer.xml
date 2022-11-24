@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_reservation"
+            android:icon="@drawable/house"
+            android:title="@string/home" />
+        <item
+            android:id="@+id/nav_drivertype"
+            android:icon="@drawable/user"
+            android:title="@string/drivertype" />
+<!--        <item-->
+<!--            android:id="@+id/nav_rideinfo"-->
+<!--            android:icon="@drawable/info"-->
+<!--            android:title="@string/rideinfo" />-->
+        <item
+            android:id="@+id/nav_partners"
+            android:icon="@drawable/portfolio"
+            android:title="@string/partners" />
+
+<!--        <item-->
+<!--            android:id="@+id/nav_pendingcurrentrides"-->
+<!--            android:icon="@drawable/info"-->
+<!--            android:title="@string/criderequests" />-->
+
+        <item
+            android:id="@+id/nav_friderequests"
+            android:icon="@drawable/info"
+            android:title="@string/frequests" />
+
+        <item
+            android:id="@+id/nav_futurerides"
+            android:icon="@drawable/info"
+            android:title="@string/futurerides" />
+
+
+
+        <item
+            android:id="@+id/nav_fhistory"
+            android:icon="@drawable/history"
+            android:title="@string/fhistory" />
+
+        <item
+            android:id="@+id/nav_p_history"
+            android:icon="@drawable/payment"
+            android:title="@string/payment_history" />
+
+        <item
+            android:id="@+id/nav_address"
+            android:icon="@drawable/payment"
+            android:title="@string/phistory" />
+
+
+        <item
+            android:id="@+id/nav_my_reward_program"
+            android:icon="@drawable/payment"
+            android:title="@string/nav_my_reward_program" />
+
+
+
+        <!--<item-->
+            <!--android:id="@+id/nav_bonus_program"-->
+            <!--android:icon="@drawable/payment"-->
+            <!--android:title="@string/nav_bonus_program" />-->
+
+
+
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/tools"
+            android:title="Settings" />
+
+        <item
+            android:id="@+id/nav_handbook"
+            android:icon="@drawable/info"
+            android:title="@string/handbook" />
+
+
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/exit"
+            android:title="Logout" />
+    </group>
+</menu>

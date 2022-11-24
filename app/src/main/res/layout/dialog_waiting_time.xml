@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootlo"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/button_border_round_3"
+    android:orientation="vertical">
+
+    <!---->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:id="@+id/ll_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_unplanned_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="3dp"
+                    android:gravity="center"
+                    android:text="@string/were_there_unplanned_stops"
+                    android:textColor="@color/white_full"
+                    android:textSize="@dimen/text_mediumsize"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <Spinner
+                android:id="@+id/sp_unplanned_count"
+                style="@style/Widget.AppCompat.DropDownItem.Spinner"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/margin_10"
+                android:layout_marginStart="@dimen/margin_10"
+                android:dropDownVerticalOffset="50dp"
+                android:gravity="center"
+                android:spinnerMode="dropdown" />
+
+
+            <!-- <android.support.v7.widget.RecyclerView
+                 android:id="@+id/rv_select_stop"
+                 android:layout_width="match_parent"
+                 android:layout_height="150dp"
+                 android:layout_marginTop="@dimen/margin_05"
+                 android:visibility="gone">
+
+             </android.support.v7.widget.RecyclerView>-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_20"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_wait_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="3dp"
+                    android:gravity="center"
+                    android:text="@string/was_there_any_wait_time"
+                    android:textColor="@color/white_full"
+                    android:textSize="@dimen/text_mediumsize"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <Spinner
+                android:id="@+id/sp_times_list"
+                style="@style/Widget.AppCompat.DropDownItem.Spinner"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/margin_10"
+                android:layout_marginStart="@dimen/margin_10"
+                android:dropDownVerticalOffset="50dp"
+                android:gravity="center"
+                android:spinnerMode="dropdown" />
+
+
+            <!-- <android.support.v7.widget.RecyclerView
+                 android:id="@+id/rv_select_times"
+                 android:layout_width="match_parent"
+                 android:layout_height="250dp"
+                 android:layout_marginTop="@dimen/margin_05"
+                 android:visibility="gone">
+
+             </android.support.v7.widget.RecyclerView>-->
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/m_btn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_yes"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="@dimen/margin_10"
+                android:layout_weight="1"
+                android:background="@drawable/button_border_round_1"
+                android:paddingBottom="@dimen/padding_10"
+                android:paddingLeft="@dimen/padding_10"
+                android:paddingRight="@dimen/padding_10"
+                android:paddingTop="@dimen/padding_10"
+                android:text="Yes"
+                android:textAllCaps="false"
+                android:textColor="@color/white_full"
+                android:textSize="@dimen/text_mediumsize" />
+
+            <Button
+                android:id="@+id/btn_no"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_margin="@dimen/margin_10"
+                android:layout_weight="1"
+                android:background="@drawable/button_border_round_1"
+                android:paddingBottom="@dimen/padding_10"
+                android:paddingLeft="@dimen/padding_10"
+                android:paddingRight="@dimen/padding_10"
+                android:paddingTop="@dimen/padding_10"
+                android:text="No"
+                android:textAllCaps="false"
+                android:textColor="@color/white_full"
+                android:textSize="@dimen/text_mediumsize" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    android:id="@+id/root"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_online"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/green"
+        android:visibility="visible"
+        android:layout_alignParentTop="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_weight="1.2"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/onlinestatusimg"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_margin="@dimen/margin_10"
+                    android:layout_alignParentLeft="true"
+                    android:src="@drawable/offline"/>
+
+                <TextView
+                    android:id="@+id/onlinestatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/onlinestatusimg"
+                    android:textColor="@color/black"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:textSize="@dimen/text_mediumsize"
+                    android:textStyle="bold"
+                    android:text=""/>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/online"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white_full"
+                    android:visibility="visible"
+                    style="@style/MaterialAnimations.Buttongreen"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/text_largesize"
+                    android:text="GO ONLINE"/>
+
+                <Button
+                    android:id="@+id/logout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white_full"
+                    android:visibility="gone"
+                    style="@style/MaterialAnimations.Buttonblack"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/text_largesize"
+                    android:text="OFFLINE"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <include
+        android:id="@+id/bottom_sheet"
+        layout="@layout/bottom_sheet" />
+
+</android.support.design.widget.CoordinatorLayout >
