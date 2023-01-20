@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rowitem_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:layout_margin="6dp"
+    android:background="@color/off_30_white">
+
+
+
+    <RelativeLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/off_30_white"
+        >
+
+
+
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentLeft="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/appicon"/>
+
+
+        <RelativeLayout
+            android:id="@+id/relat11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/icon"
+            android:paddingLeft="@dimen/margin_10"
+            >
+
+
+            <TextView
+                android:id="@+id/text_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date &amp; Time: 34/54/6777 10:23"
+                android:textColor="@color/red"
+                android:textSize="14dp"
+                android:textStyle="normal"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/text_bouns"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bonus Program: 1"
+                android:layout_below="@+id/text_date"
+                android:textColor="@color/black"
+                android:textSize="14dp"
+                android:layout_marginTop="10dp"/>
+
+
+            <TextView
+                android:id="@+id/text_total_points"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Points: 3"
+                android:layout_below="@+id/text_bouns"
+                android:textColor="@color/black"
+                android:textSize="14dp"/>
+
+
+
+            <TextView
+                android:id="@+id/text_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Status: Reached"
+                android:layout_below="@+id/text_total_points"
+                android:textColor="@color/black"
+                android:textSize="14dp"
+                android:visibility="visible"/>
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

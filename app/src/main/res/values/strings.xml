@@ -1,0 +1,91 @@
+<resources>
+    <string name="app_name">LNCDriver</string>
+
+    <string name="app_name_1">LNC Driver</string>
+
+    <string name="home">Home</string>
+    <string name="drivertype">Driver Type</string>
+    <string name="crequests">Current Requests</string>
+    <string name="rideinfo">Ride Info</string>
+    <string name="partners">Manage Partners</string>
+    <string name="history">Ride History</string>
+    <string name="futurerides">Accepted Rides</string>
+    <string name="handbook">Employee Guidelines</string>
+
+    <string name="frequests">Ride Reservations</string>
+    <string name="criderequests">ASAP rides</string>
+    <string name="fhistory">Ride History</string>
+    <string name="payment_history">Payment History</string>
+    <string name="phistory">Weekly Payment History</string>
+    <string name="settings">Settings</string>
+    <string name="logout">Logout</string>
+
+    <string name="nav_my_reward_program">My Reward</string>
+    <string name="nav_bonus_program">Bouns/Reward Program</string>
+
+
+
+    <color name="off_white">#f2f2f2</color>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="connection_subtext">It seems that internet connection is not available,
+        please check your wi-fi or mobile data connection &amp; try again. </string>
+
+    <string name="loading">"Please wait while processing...</string>
+    <string name="forgot">Forgot Password?</string>
+    <string name="enteremail">Enter Email/Number</string>
+    <string name="noaccount">Don\'t have an account?</string>
+    <string name="signupl"><u>Sign Up</u></string>
+    <string name="signup">Sign Up</string>
+    <string name="register"><u>Register</u></string>
+    <string name="signin">Sign In </string>
+    <string name="book">Book a Reservation</string>
+    <string name="dropoff">Drop Off Address</string>
+    <string name="pinfo">Personal Information</string>
+    <string name="savefor">Save as for future reference</string>
+    <string name="vehicleinfo">Vehicle Information</string>
+    <string name="documents">Documents</string>
+    <string name="bank">Bank details</string>
+    <string name="dropinfo">Drop-off  Location</string>
+    <string name="rtext">Fill out the below form to \n book a Reservation with \n "&quot; Late Night Chauffeurs "&quot; </string>
+
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam efficitur ipsum in placerat molestie. Fusce quis mauris a enim sollicitudin ultrices non eget velit. Aliquam eu pulvinar enim. Praesent libero nisl, ultricies vel maximus eu, maximus et nisi. Phasellus pharetra nec ligula vitae mollis. Quisque porttitor ornare magna, quis dignissim libero aliquam id. Donec sollicitudin ultrices ante, a semper erat tristique in. Vivamus sodales in ligula at sodales. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla tempus bibendum nibh, ac tincidunt quam convallis non. Proin dolor nunc, egestas et tortor consequat, dignissim lacinia odio. Ut ut aliquet erat.  Ut non scelerisque elit. Morbi dolor neque, iaculis eu justo rutrum, aliquet dictum mauris. Phasellus quis massa ut ligula feugiat congue a et dolor. Etiam a dui a sapien ornare accumsan ac ut lorem. Suspendisse vehicula lorem dapibus nibh rhoncus ultricies. Proin sem nulla, elementum quis pharetra quis, commodo vitae nisi. Donec urna orci, posuere et iaculis sit amet, fringilla quis sapien. Pellentesque nec posuere felis. Praesent malesuada tellus nisi, non dictum justo interdum eget. Quisque mollis euismod libero, non aliquam lorem interdum vitae. Aliquam vehicula efficitur purus eget rutrum. Sed pulvinar fermentum risus ac viverra. Cras laoreet ligula quam, ac lacinia nisl elementum in. Aenean velit arcu, euismod a venenatis non, pulvinar pulvinar massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam efficitur ipsum in placerat molestie. Fusce quis mauris a enim sollicitudin ultrices non eget velit. Aliquam eu pulvinar enim. Praesent libero nisl, ultricies vel maximus eu, maximus et nisi. Phasellus pharetra nec ligula vitae mollis. Quisque porttitor ornare magna, quis dignissim libero aliquam id. Donec sollicitudin ultrices ante, a semper erat tristique in. Vivamus sodales in ligula at sodales. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla tempus bibendum nibh, ac tincidunt quam convallis non. Proin dolor nunc, egestas et tortor consequat, dignissim lacinia odio. Ut ut aliquet erat.  Ut non scelerisque elit. Morbi dolor neque, iaculis eu justo rutrum, aliquet dictum mauris. Phasellus quis massa ut ligula feugiat congue a et dolor. Etiam a dui a sapien ornare accumsan ac ut lorem. Suspendisse vehicula lorem dapibus nibh rhoncus ultricies. Proin sem nulla, elementum quis pharetra quis, commodo vitae nisi. Donec urna orci, posuere et iaculis sit amet, fringilla quis sapien. Pellentesque nec posuere felis. Praesent malesuada tellus nisi, non dictum justo interdum eget. Quisque mollis euismod libero, non aliquam lorem interdum vitae. Aliquam vehicula efficitur purus eget rutrum. Sed pulvinar fermentum risus ac viverra. Cras laoreet ligula quam, ac lacinia nisl elementum in. Aenean velit arcu, euismod a venenatis non, pulvinar pulvinar massa.</string>
+
+    <string name="open_activity">Open Autocomplete Activity</string>
+    <string name="selected_place">Last Selected Place:</string>
+    <string name="place_details">
+    <![CDATA[
+        <b>%1$s</b>
+        <br/>
+        <i>Place Id: %2$s</i>
+        <br/>
+        Address: %3$s
+        <br/>
+        Phone: %4$s
+        <br/>
+        Website: %5$s
+    ]]>
+    </string>
+    <string name="cancel_ride">Cancel</string>
+    <string name="criminal_background_check">I authorize Late Night Chauffeurs to conduct a criminal background check</string>
+    <string name="certification_declaration">I certify that the information entered in the application form above is true and correct to the best of my knowledge. I understand that any false statements may disqualify my application</string>
+    <string name="w9_form">W9 Form</string>
+    <string name="default_driver_for_today">Make default partner driver for today</string>
+    <string name="from_date">From Date :</string>
+    <string name="to_date">To Date :</string>
+    <string name="waiting_charges">Waiting Charges</string>
+    <string name="weekly_total_amount">Weekly Total Amount :</string>
+    <string name="additional_stops">Additional Stops?</string>
+    <string name="enter_bank_number">Enter Bank Name</string>
+    <string name="mobile_no">Mobile No</string>
+    <string name="no_msg">No</string>
+    <string name="yes_msg">Yes</string>
+    <string name="start_ride">START RIDE</string>
+    <string name="are_you_sure_you_want_to_charge_for_extra_stop">Are you sure you want to charge for extra stop?</string>
+    <string name="was_there_any_wait_time">Were there any wait time?</string>
+    <string name="were_there_unplanned_stops">Were there any unplanned stops?</string>
+    <string name="notification_permission_denied_message">You won\'t be receiving notification\'s from us. You will miss out exciting offers, exchange rate changes and rewards!. Please press \'OK\' to open app settings</string>
+    <string name="notification_permission_denied_title">Please allow us to send notifications</string>
+
+
+</resources>

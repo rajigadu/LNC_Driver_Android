@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rowitem_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:layout_margin="6dp"
+    android:background="@color/off_30_white">
+
+
+
+    <RelativeLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/off_30_white"
+        >
+
+
+
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentLeft="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/appicon"
+            android:visibility="gone"
+            />
+
+
+        <TextView
+            android:id="@+id/bonus_title"
+            android:layout_width="45dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/background_round_red"
+            android:text="Ride 1"
+            android:gravity="center"
+            android:textSize="12dp"
+            android:textColor="@color/white"
+            android:visibility="gone"
+            />
+
+
+        <RelativeLayout
+            android:id="@+id/relat11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/icon"
+
+            >
+
+
+            <TextView
+                android:id="@+id/text_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reward Program"
+                android:textColor="@color/black"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/text_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Description: It will do the same effect as"
+                android:layout_below="@+id/text_title"
+                android:textColor="@color/black"
+                android:textSize="14dp"
+                android:layout_marginTop="10dp"/>
+
+
+
+            <Button
+                android:id="@+id/button_active"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:text="Active Now"
+                android:layout_below="@+id/text_description"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/white"
+                android:textSize="14dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/background_round_red"
+                android:textAllCaps="false"
+                />
+
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

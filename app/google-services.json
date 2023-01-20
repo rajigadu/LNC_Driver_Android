@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "12677790788",
+    "project_id": "latenightchauffeurs-8e22d",
+    "storage_bucket": "latenightchauffeurs-8e22d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:12677790788:android:4649917c8dd040da149011",
+        "android_client_info": {
+          "package_name": "com.latenightchauffeurs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "12677790788-k9ddkq56k36q84uhavgg7oa0tlr2ji53.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.latenightchauffeurs",
+            "certificate_hash": "4cda8ed152e50dacb47fa3955638a06cc884522c"
+          }
+        },
+        {
+          "client_id": "12677790788-o721kd68ha5a84je0dlm69fmpseg20r1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoo8jAmUYrgOKAm1eGmyLI-k7JWlt1Tck"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "12677790788-o721kd68ha5a84je0dlm69fmpseg20r1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "12677790788-25l0elb2qbo08vcs1gatqsqjs7rqgau1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.AnaadITSolutions.LateNightChauffeurs"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:12677790788:android:659510dce9ae21d2149011",
+        "android_client_info": {
+          "package_name": "com.lncdriver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "12677790788-b1nv1lhapb161e063uc1is8vctei65er.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lncdriver",
+            "certificate_hash": "4cda8ed152e50dacb47fa3955638a06cc884522c"
+          }
+        },
+        {
+          "client_id": "12677790788-o721kd68ha5a84je0dlm69fmpseg20r1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoo8jAmUYrgOKAm1eGmyLI-k7JWlt1Tck"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "12677790788-o721kd68ha5a84je0dlm69fmpseg20r1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "12677790788-25l0elb2qbo08vcs1gatqsqjs7rqgau1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.AnaadITSolutions.LateNightChauffeurs"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
