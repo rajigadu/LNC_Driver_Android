@@ -17,8 +17,8 @@ android {
         applicationId "com.lncdriver"
         minSdkVersion 21
         targetSdkVersion 33
-        versionCode 39
-        versionName "0.0.0039"
+        versionCode 42
+        versionName "0.0.0042"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         multiDexEnabled true
         resConfigs "en"
@@ -29,21 +29,8 @@ android {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            //signingConfig signingConfigs.config
-            //debuggable true
-        }
-
-        debug {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-
-
-
-//    buildTypes {
-//        release {
-//            minifyEnabled true
+//            signingConfig signingConfigs.config
+//            debuggable true
 //            shrinkResources true
 //            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 //
@@ -52,10 +39,13 @@ android {
 //            renderscriptDebuggable false
 //            pseudoLocalesEnabled false
 //            zipAlignEnabled true
-//
-//        }
-//    }
+        }
 
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
 
     defaultConfig {
         multiDexEnabled true
