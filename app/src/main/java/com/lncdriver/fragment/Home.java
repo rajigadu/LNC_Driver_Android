@@ -67,6 +67,7 @@ import com.lncdriver.utils.ConstVariable;
 import com.lncdriver.utils.Global;
 import com.lncdriver.utils.JsonPost;
 import com.lncdriver.utils.OnlineRequest;
+import com.lncdriver.utils.PermissionUtils;
 import com.lncdriver.utils.Settings;
 import com.lncdriver.utils.Utils;
 import com.squareup.picasso.Picasso;
@@ -138,6 +139,8 @@ public class Home extends Fragment implements OnMapReadyCallback, View.OnClickLi
     TextView offline;
     ImageView imgOnStatus;
     TextView dataOnStatus;
+
+    String[] permissions = new String[]{};
 
     public static Home newInstance() {
         Home navigationFragment = new Home();
@@ -219,8 +222,6 @@ public class Home extends Fragment implements OnMapReadyCallback, View.OnClickLi
         getActivity().registerReceiver(mHandleMessageReceiver, new IntentFilter("OPEN_NEW_ACTIVITY"));
 
         mcontext = getActivity();
-        showNotificationPermission();
-
     }
 
     private void showNotificationPermission() {
@@ -459,8 +460,6 @@ public class Home extends Fragment implements OnMapReadyCallback, View.OnClickLi
     }
 
 
-
-
     private void callApiNextRideMethod() {
         APIInterface apiInterface  = APIClient.getClientVO().create(APIInterface.class);
         Call<ResponseBody> call = null;
@@ -488,9 +487,6 @@ public class Home extends Fragment implements OnMapReadyCallback, View.OnClickLi
 //
 
     }
-
-
-
 
 
     @Override
@@ -949,8 +945,24 @@ public class Home extends Fragment implements OnMapReadyCallback, View.OnClickLi
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.isMyLocationEnabled();
 
+        if (Build.VERSION.SDK_INT >= 33) {
+            permissions = new String[]{
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.POST_NOTIFICATIONS
+            };
+        } else {
+            permissions = new String[]{
+                    Manifest.permission.ACCESS_FINE_LOCATION
+            };
+        }
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            checkLocationPermission();
+            //checkLocationPermission();
+            if (!PermissionUtils.hasPermissions(mcontext, permissions)) {
+                requestPermissions(
+                        permissions, MY_PERMISSIONS_REQUEST_LOCATION
+                );
+            }
         } else {
             gps = new GPSTracker(mcontext);
 
@@ -999,11 +1011,6 @@ public class Home extends Fragment implements OnMapReadyCallback, View.OnClickLi
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         switch (requestCode) {
-            case NOTIFICATION_PERMISSION:
-                if (grantResults.length > 0 && grantResults[0] != PackageManager.PERMISSION_GRANTED) {
-                    showPermissionDeniedDialog();
-                }
-            break;
             case MY_PERMISSIONS_REQUEST_LOCATION: {
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0
@@ -1032,6 +1039,10 @@ public class Home extends Fragment implements OnMapReadyCallback, View.OnClickLi
                         } else {
                             gps.showSettingsAlert();
                         }
+                    }
+                    if (ContextCompat.checkSelfPermission(mcontext,
+                            Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                        showPermissionDeniedDialog();
                     }
                 } else {
                     Utils.toastTxt("need permissions for location update", mcontext);
