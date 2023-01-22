@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bottom_sheet"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -133,12 +134,14 @@
                 android:textStyle="bold" />
 
             <de.hdodenhof.circleimageview.CircleImageView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/userimage"
                 android:layout_width="58dp"
                 android:layout_height="58dp"
                 android:layout_below="@+id/utitle43244"
-                android:layout_margin="@dimen/margin_10"
+                android:layout_marginStart="@dimen/margin_10"
+                android:layout_marginTop="@dimen/margin_10"
+                android:layout_marginEnd="@dimen/margin_10"
+                android:layout_marginBottom="@dimen/margin_10"
                 app:civ_border_color="#FF000000"
                 app:civ_border_width="1dp" />
 
@@ -196,11 +199,10 @@
                 android:id="@+id/rideaddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
                 android:layout_below="@+id/tv_planned_stops"
-                android:layout_marginRight="@dimen/margin_10"
+                android:layout_marginStart="15dp"
                 android:layout_marginTop="@dimen/margin_10"
-                android:text="Elente Mall TO iVY HOSPITAL"
+                tools:text="Elente Mall TO iVY HOSPITAL"
                 android:textColor="@color/white_full"
                 android:textSize="@dimen/text_smallsize"
                 app:layout_constraintStart_toStartOf="parent"
@@ -211,9 +213,8 @@
                 style="@style/MaterialAnimations.Buttonblack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
                 android:layout_below="@+id/rideaddress"
-                android:layout_marginLeft="@dimen/margin_10"
+                android:layout_marginStart="15dp"
                 android:background="@android:color/transparent"
                 android:text="GO TO USER"
                 android:textAllCaps="false"
@@ -238,8 +239,7 @@
                 android:layout_height="35dp"
                 android:layout_alignParentLeft="true"
                 android:layout_below="@+id/unavigation"
-
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:background="#4C8900"
                 android:text="   GO TO DESTINATION   "
                 android:textAllCaps="false"

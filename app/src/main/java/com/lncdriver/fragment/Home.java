@@ -1039,10 +1039,11 @@ public class Home extends Fragment implements OnMapReadyCallback, View.OnClickLi
                         } else {
                             gps.showSettingsAlert();
                         }
-                    }
-                    if (ContextCompat.checkSelfPermission(mcontext,
-                            Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-                        showPermissionDeniedDialog();
+                    } else if (Build.VERSION.SDK_INT >= 13) {
+                        if (ContextCompat.checkSelfPermission(mcontext,
+                                Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                            showPermissionDeniedDialog();
+                        }
                     }
                 } else {
                     Utils.toastTxt("need permissions for location update", mcontext);
