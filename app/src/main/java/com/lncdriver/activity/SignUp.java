@@ -371,7 +371,10 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                     finish();
                 break;
             case R.id.address:
-                openAutocompleteActivity();
+                /**
+                 * Due to internal discussion disabled google place holder picker
+                 */
+                //openAutocompleteActivity();
                 break;
         }
     }
