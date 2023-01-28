@@ -17,8 +17,8 @@ android {
         applicationId "com.lncdriver"
         minSdkVersion 21
         targetSdkVersion 33
-        versionCode 43
-        versionName "0.0.0042"
+        versionCode 44
+        versionName "0.0.0043"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         multiDexEnabled true
         resConfigs "en"
