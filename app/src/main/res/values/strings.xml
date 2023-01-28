@@ -86,6 +86,7 @@
     <string name="were_there_unplanned_stops">Were there any unplanned stops?</string>
     <string name="notification_permission_denied_message">You won\'t be receiving notification\'s from us. You will miss out exciting offers, exchange rate changes and rewards!. Please press \'OK\' to open app settings</string>
     <string name="notification_permission_denied_title">Please allow us to send notifications</string>
+    <string name="permission_denied_message">Unable to open <b>Gallery</b>.Go to Settings -> Permissions -> then allow permissions inorder to upload photos.></string>
 
 
 </resources>

@@ -1,5 +1,7 @@
 package com.lncdriver.activity;
 
+import static com.lncdriver.utils.PermissionUtils.hasPermissions;
+
 import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
@@ -21,6 +23,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+
+import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -165,8 +169,6 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     public static Uri uri_one, uri_two, uri_three, uri_four, uri_five;
     public static Context mcontext;
     private String userChoosenTask;
-    String[] PERMISSIONS = {Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA};
 
     private DatePickerDialog datePickerDialog;
     private SimpleDateFormat dateFormatter;
@@ -407,6 +409,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
     public void pickProfileImage() {
         LayoutInflater inflater = LayoutInflater.from(SignUp.this);
         final View dialogLayout = inflater.inflate(R.layout.activity_imagepicker, null);
@@ -419,76 +422,44 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         final TextView Takephoto = (TextView) dialogLayout.findViewById(R.id.takephoto);
         final TextView Deletephoto = (TextView) dialogLayout.findViewById(R.id.cancel);
 
-       /* dialogLayout.post(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                YoYo.with(Techniques.ZoomIn).duration(500).playOn(dialogLayout);
+        Takephoto.setOnClickListener(v -> {
+            builder.dismiss();
+            userChoosenTask = Takephoto.getText().toString();
+
+            if (!hasPermissions(SignUp.this, Manifest.permission.CAMERA)) {
+                ActivityCompat.requestPermissions(SignUp.this,
+                        new String[]{Manifest.permission.CAMERA}, MY_REQUEST_CODE);
+            } else {
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent, RequestCodeCam);
             }
-        });*/
+        });
+        Choosegallary.setOnClickListener(v -> {
+            builder.dismiss();
+            userChoosenTask = Choosegallary.getText().toString();
 
-        Takephoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // boolean result = Utility.checkPermission(EditProfile.this);
-                builder.dismiss();
-                userChoosenTask = Takephoto.getText().toString();
-
-                if (!hasPermissions(SignUp.this, PERMISSIONS)) {
-                    ActivityCompat.requestPermissions(SignUp.this, PERMISSIONS, MY_REQUEST_CODE);
+            if (!hasPermissions(SignUp.this, Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                if (Build.VERSION.SDK_INT >= 33) {
+                    ActivityCompat.requestPermissions(SignUp.this, new String[]{
+                            Manifest.permission.READ_MEDIA_IMAGES
+                    }, MY_REQUEST_CODE);
                 } else {
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    startActivityForResult(intent, RequestCodeCam);
+                    ActivityCompat.requestPermissions(SignUp.this, new String[]{
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                            Manifest.permission.READ_EXTERNAL_STORAGE
+                    }, MY_REQUEST_CODE);
                 }
-
-                /*if (result)
-                {
-                    if(checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
-                    {
-                        ActivityCompat.requestPermissions(EditProfile.this,new String[]{Manifest.permission.CAMERA},MY_REQUEST_CODE);
-                    }
-                    else
-                    {
-                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        startActivityForResult(intent,RequestCodeCam);
-                    }
-                }*/
-            }
-        });
-        Choosegallary.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                builder.dismiss();
-                userChoosenTask = Choosegallary.getText().toString();
-
-                if (!hasPermissions(SignUp.this, PERMISSIONS)) {
-                    ActivityCompat.requestPermissions(SignUp.this, PERMISSIONS, MY_REQUEST_CODE);
-                } else {
-                    Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    startActivityForResult(intent, RequestCodeLib);
-                }
+            } else {
+                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(intent, RequestCodeLib);
             }
         });
 
-        Deletephoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // profileImageDelete();
-                builder.dismiss();
-            }
+        Deletephoto.setOnClickListener(v -> {
+            // profileImageDelete();
+            builder.dismiss();
         });
-    }
-
-    public static boolean hasPermissions(Context context, String... permissions) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && context != null && permissions != null) {
-            for (String permission : permissions) {
-                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
-                    return false;
-                }
-            }
-        }
-        return true;
     }
 
     @Override
@@ -504,10 +475,38 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                         startActivityForResult(intent, RequestCodeLib);
                     }
                 } else {
-                    //code for deny
+                    showPermissionDeniedAlert();
                 }
                 break;
         }
+    }
+
+    private void showPermissionDeniedAlert() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Permission Denied");
+        builder.setMessage(getString(R.string.permission_denied_message));
+        builder.setCancelable(false);
+
+        builder.setPositiveButton("SETTINGS", (dialogInterface, i) -> {
+            navigateToSettings();
+            dialogInterface.dismiss();
+        });
+        builder.setNegativeButton("CANCEL", (dialogInterface, i) -> {
+            dialogInterface.cancel();
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+    }
+
+    private void navigateToSettings() {
+        try {
+            Uri uri = Uri.fromParts("package", getPackageName(), null);
+            Intent intent = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+            intent.setData(uri);
+            startActivity(intent);
+        } catch (Exception e) { e.printStackTrace(); }
     }
 
     @Override
