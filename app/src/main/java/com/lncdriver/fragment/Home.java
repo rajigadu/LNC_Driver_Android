@@ -957,54 +957,15 @@ public class Home extends Fragment implements OnMapReadyCallback, View.OnClickLi
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            //checkLocationPermission();
             if (!PermissionUtils.hasPermissions(mcontext, permissions)) {
                 requestPermissions(
                         permissions, MY_PERMISSIONS_REQUEST_LOCATION
                 );
+            } else {
+                updateLocation();
             }
         } else {
-            gps = new GPSTracker(mcontext);
-
-            if (gps.canGetLocation()) {
-                LatLng latLng = new LatLng(gps.getLatitude(), gps.getLongitude());
-                MarkerOptions markerOptions = new MarkerOptions();
-                markerOptions.position(latLng);
-                //markerOptions.title("my Location");
-                markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-                uMarker = mMap.addMarker(markerOptions);
-                //uMarker.showInfoWindow();
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
-                DriverLocationUpdateRequest(mcontext, String.valueOf(latLng.latitude), String.valueOf(latLng.longitude));
-            } else {
-                gps.showSettingsAlert();
-            }
-        }
-    }
-
-    public void checkLocationPermission() {
-        if (ContextCompat.checkSelfPermission(mcontext, Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
-            // Utils.toastTxt("permissions granted",mcontext);
-
-            gps = new GPSTracker(mcontext);
-
-            if (gps.canGetLocation()) {
-                LatLng latLng = new LatLng(gps.getLatitude(), gps.getLongitude());
-                MarkerOptions markerOptions = new MarkerOptions();
-                markerOptions.position(latLng);
-                //markerOptions.title("my Location");
-                markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-                uMarker = mMap.addMarker(markerOptions);
-                // uMarker.showInfoWindow();
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
-
-                DriverLocationUpdateRequest(mcontext, String.valueOf(latLng.latitude), String.valueOf(latLng.longitude));
-            } else {
-                gps.showSettingsAlert();
-            }
-        } else {
-            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSIONS_REQUEST_LOCATION);
+            updateLocation();
         }
     }
 
@@ -1020,26 +981,8 @@ public class Home extends Fragment implements OnMapReadyCallback, View.OnClickLi
                     if (ContextCompat.checkSelfPermission(mcontext,
                             Manifest.permission.ACCESS_FINE_LOCATION)
                             == PackageManager.PERMISSION_GRANTED) {
-                        //Request location updates:
-                        // Utils.toastTxt("permissions granted",mcontext);
-
-                        gps = new GPSTracker(mcontext);
-
-                        if (gps.canGetLocation()) {
-                            LatLng latLng = new LatLng(gps.getLatitude(), gps.getLongitude());
-                            MarkerOptions markerOptions = new MarkerOptions();
-                            markerOptions.position(latLng);
-                            // markerOptions.title("my Location");
-                            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-                            uMarker = mMap.addMarker(markerOptions);
-                            // uMarker.showInfoWindow();
-                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
-
-                            DriverLocationUpdateRequest(mcontext, String.valueOf(latLng.latitude), String.valueOf(latLng.longitude));
-                        } else {
-                            gps.showSettingsAlert();
-                        }
-                    } else if (Build.VERSION.SDK_INT >= 13) {
+                        updateLocation();
+                    } else if (Build.VERSION.SDK_INT >= 33) {
                         if (ContextCompat.checkSelfPermission(mcontext,
                                 Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
                             showPermissionDeniedDialog();
@@ -1057,6 +1000,26 @@ public class Home extends Fragment implements OnMapReadyCallback, View.OnClickLi
                     getCall(map);
                 }
                 break;
+        }
+    }
+
+    /**
+     * Updating User current Location here
+     */
+    private void updateLocation() {
+        gps = new GPSTracker(mcontext);
+        if (gps.canGetLocation()) {
+            LatLng latLng = new LatLng(gps.getLatitude(), gps.getLongitude());
+            MarkerOptions markerOptions = new MarkerOptions();
+            markerOptions.position(latLng);
+            // markerOptions.title("my Location");
+            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+            uMarker = mMap.addMarker(markerOptions);
+            // uMarker.showInfoWindow();
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+            DriverLocationUpdateRequest(mcontext, String.valueOf(latLng.latitude), String.valueOf(latLng.longitude));
+        } else {
+            gps.showSettingsAlert();
         }
     }
 
