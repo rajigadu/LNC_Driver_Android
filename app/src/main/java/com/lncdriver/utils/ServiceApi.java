@@ -22,4 +22,6 @@ public interface ServiceApi {
     @Headers("Accept: " + "application/json")
     @GET(Settings.URL_GET_BY_WEEK_PAYMENT_HISTORY)
     Call<WeekList> fetchWeekList(@Query("driver_id") String driverId);
+
+
 }
