@@ -10,7 +10,6 @@ import com.lncdriver.databinding.FragmentDbhAssignRidesLayoutBinding
 import com.lncdriver.dbh.utils.ProgressCaller
 import com.lncdriver.dbh.utils.Resource
 import com.lncdriver.dbh.viewmodel.DbhViewModel
-import com.lncdriver.fragment.PaymentListHistory
 import com.lncdriver.model.SavePref
 
 /**
@@ -48,12 +47,17 @@ class DbhAssignRides : Fragment() {
     }
 
     private fun getDbhAssignedRides() {
-        val driverId = preferences?.driverId ?: ""
+        val driverId = preferences?.userId ?: ""
         dbhViewModel?.dbhAssignedRideList(driverId)?.observe(viewLifecycleOwner) { result ->
             when(result.status) {
                 Resource.Status.LOADING -> { activity?.let { ProgressCaller.showProgressDialog(it) }}
                 Resource.Status.SUCCESS -> {
                     ProgressCaller.hideProgressDialog()
+//                    if (result.data.status == "1") {
+//                        initializeRideListAdapter()
+//                    } else {
+//                        showAlertMessage()
+//                    }
                 }
                 Resource.Status.ERROR -> {
                     ProgressCaller.hideProgressDialog()
