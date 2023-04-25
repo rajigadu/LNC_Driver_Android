@@ -23,5 +23,7 @@ public interface ServiceApi {
     @GET(Settings.URL_GET_BY_WEEK_PAYMENT_HISTORY)
     Call<WeekList> fetchWeekList(@Query("driver_id") String driverId);
 
+    @POST(Settings.URL_DBH_ASSIGNED_RIDE_LIST)
+    Call<ResponseBody>dbhAssignedRideList(@Query("driver_id") String driverId);
 
 }

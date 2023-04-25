@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dbh_assign_rides">DBH-Assign Rides</string>
+    <string name="dbh_rides">Driver By The Hour Rides</string>
+</resources>

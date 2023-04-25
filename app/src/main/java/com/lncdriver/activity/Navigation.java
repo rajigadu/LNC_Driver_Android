@@ -51,6 +51,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.lncdriver.R;
+import com.lncdriver.dbh.DbhAssignRides;
 import com.lncdriver.fcm.LocationBackgroundService;
 import com.lncdriver.fcm.MyFirebaseMessagingService;
 import com.lncdriver.fragment.CurrentRides;
@@ -331,9 +332,6 @@ public class Navigation extends AppCompatActivity implements NavigationView.OnNa
         if (id == R.id.nav_drivertype) {
             title = getString(R.string.drivertype);
             getFragment(1);
-//        } else if (id == R.id.nav_rideinfo) {
-//            title = getString(R.string.crequests);
-//            getFragment(2);
         } else if (id == R.id.nav_partners) {
             title = getString(R.string.partners);
             getFragment(2);
@@ -343,61 +341,30 @@ public class Navigation extends AppCompatActivity implements NavigationView.OnNa
         } else if (id == R.id.nav_futurerides) {
             title = getString(R.string.futurerides);
             getFragment(4);
-        }
-
-        else if (id == R.id.nav_fhistory) {
+        } else if (id == R.id.nav_fhistory) {
              title = getString(R.string.fhistory);
              getFragment(5);
-        }
-        else if (id == R.id.nav_p_history) {
+        } else if (id == R.id.nav_p_history) {
              title = getString(R.string.payment_history);
             getFragment(6);
-        }
-        else if (id == R.id.nav_address) {
+        } else if (id == R.id.nav_address) {
             title = getString(R.string.phistory);
             getFragment(7);
-        }
-
-
-        else if (id == R.id.nav_my_reward_program) {
+        } else if (id == R.id.nav_my_reward_program) {
             title = getString(R.string.nav_my_reward_program);
             getFragment(8);
-        }
-
-
-
-        else if (id == R.id.nav_settings) {
+        } else if (id == R.id.nav_settings) {
             title = getString(R.string.settings);
             getFragment(9);
-        }
-
-        else if (id == R.id.nav_handbook) {
+        } else if (id == R.id.nav_handbook) {
             title = getString(R.string.handbook);
             getFragment(10);
-        }
-
-         else if (id == R.id.nav_logout) {
+        } else if (id == R.id.nav_logout) {
             getFragment(11);
+        } else if (id == R.id.nav_dbh_rides) {
+            title = getString(R.string.dbh_rides);
+            getFragment(12);
         }
-
-
-// else if (id == R.id.nav_bonus_program) {
-////            title = getString(R.string.nav_bonus_program);
-////            getFragment(11);
-//        }else if (id == R.id.nav_settings) {
-//            title = getString(R.string.settings);
-//            getFragment(9);
-//        }
-//
-//        else if (id == R.id.nav_logout) {
-//            getFragment(10);
-//        }
-
-        //else if (id == R.id.nav_fhistory) {
-//            getFragment(12);
-//        } else if (id == R.id.nav_p_history) {
-//            getFragment(13);
-//        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -498,17 +465,6 @@ public class Navigation extends AppCompatActivity implements NavigationView.OnNa
                 fragmenttransactions(fragment);
                 break;
 
-
-//            case 11:
-//                // movies fragment
-//                title = getString(R.string.nav_bonus_program);
-//                fragment = new BounsProgramFragment();
-//                fragmenttransactions(fragment);
-//                break;
-
-
-
-
             case 9:
                 // movies fragment
                 title = getString(R.string.settings);
@@ -537,6 +493,11 @@ public class Navigation extends AppCompatActivity implements NavigationView.OnNa
                 logoutRequest();
                 break;
 
+            case 12:
+                title = getString(R.string.dbh_rides);
+                fragment = new DbhAssignRides();
+                fragmenttransactions(fragment);
+                break;
 
             default:
                 break;
