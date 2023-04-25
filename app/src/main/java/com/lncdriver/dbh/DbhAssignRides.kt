@@ -54,6 +54,7 @@ class DbhAssignRides : Fragment() {
             when(result.status) {
                 Resource.Status.LOADING -> { activity?.let { ProgressCaller.showProgressDialog(it) }}
                 Resource.Status.SUCCESS -> {
+                    binding?.refreshDbhRides?.isRefreshing = false
                     ProgressCaller.hideProgressDialog()
                     if (result.data?.status == "1") {
                         initializeRideListAdapter(result?.data?.data)
@@ -62,6 +63,7 @@ class DbhAssignRides : Fragment() {
                     }
                 }
                 Resource.Status.ERROR -> {
+                    binding?.refreshDbhRides?.isRefreshing = false
                     ProgressCaller.hideProgressDialog()
                 }
             }
