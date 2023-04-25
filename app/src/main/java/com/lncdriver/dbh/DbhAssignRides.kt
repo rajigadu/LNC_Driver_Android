@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.lncdriver.databinding.FragmentDbhAssignRidesLayoutBinding
+import com.lncdriver.dbh.adapter.DbhAssignedRidesAdapter
+import com.lncdriver.dbh.model.DbhAssignedRideData
 import com.lncdriver.dbh.utils.ProgressCaller
 import com.lncdriver.dbh.utils.Resource
 import com.lncdriver.dbh.viewmodel.DbhViewModel
@@ -53,16 +55,25 @@ class DbhAssignRides : Fragment() {
                 Resource.Status.LOADING -> { activity?.let { ProgressCaller.showProgressDialog(it) }}
                 Resource.Status.SUCCESS -> {
                     ProgressCaller.hideProgressDialog()
-//                    if (result.data.status == "1") {
-//                        initializeRideListAdapter()
-//                    } else {
-//                        showAlertMessage()
-//                    }
+                    if (result.data?.status == "1") {
+                        initializeRideListAdapter(result?.data?.data)
+                    } else {
+                        //showAlertMessage()
+                    }
                 }
                 Resource.Status.ERROR -> {
                     ProgressCaller.hideProgressDialog()
                 }
             }
         }
+    }
+
+    private fun initializeRideListAdapter(assignedRidesList: List<DbhAssignedRideData>) {
+        val dbhRidesAdapter = DbhAssignedRidesAdapter()
+
+        binding?.recyclerDbRides?.apply {
+            adapter = dbhRidesAdapter
+        }
+        dbhRidesAdapter.submitList(assignedRidesList)
     }
 }

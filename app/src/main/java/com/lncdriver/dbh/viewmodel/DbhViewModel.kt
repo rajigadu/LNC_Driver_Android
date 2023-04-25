@@ -2,6 +2,7 @@ package com.lncdriver.dbh.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.lncdriver.dbh.model.DbhAssignedRides
 import com.lncdriver.dbh.utils.Resource
 import com.lncdriver.dbh.viewmodel.repository.DbhRepository
 import okhttp3.ResponseBody
@@ -12,7 +13,7 @@ import okhttp3.ResponseBody
 class DbhViewModel : ViewModel() {
     private val dbhRepository = DbhRepository()
 
-    fun dbhAssignedRideList(driverId: String): MutableLiveData<Resource<ResponseBody>> {
+    fun dbhAssignedRideList(driverId: String): MutableLiveData<Resource<DbhAssignedRides>> {
         return dbhRepository.dbhAssignedRideList(driverId)
     }
 

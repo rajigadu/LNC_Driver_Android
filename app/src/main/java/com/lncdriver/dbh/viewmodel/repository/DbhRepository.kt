@@ -1,6 +1,7 @@
 package com.lncdriver.dbh.viewmodel.repository
 
 import androidx.lifecycle.MutableLiveData
+import com.lncdriver.dbh.model.DbhAssignedRides
 import com.lncdriver.dbh.utils.Resource
 import com.lncdriver.utils.ServiceApi
 import com.lncdriver.utils.ServiceGenerator
@@ -17,13 +18,13 @@ class DbhRepository {
 
     private val apiService: ServiceApi = ServiceGenerator.createService(ServiceApi::class.java)
 
-    fun dbhAssignedRideList(driverId: String): MutableLiveData<Resource<ResponseBody>> {
-        val addCardResult = MutableLiveData<Resource<ResponseBody>>()
+    fun dbhAssignedRideList(driverId: String): MutableLiveData<Resource<DbhAssignedRides>> {
+        val addCardResult = MutableLiveData<Resource<DbhAssignedRides>>()
         addCardResult.postValue(Resource.loading(null))
-        apiService.dbhAssignedRideList(driverId).enqueue(object : Callback<ResponseBody> {
+        apiService.dbhAssignedRideList(driverId).enqueue(object : Callback<DbhAssignedRides> {
             override fun onResponse(
-                call: Call<ResponseBody>,
-                response: Response<ResponseBody>
+                call: Call<DbhAssignedRides>,
+                response: Response<DbhAssignedRides>
             ) {
                 if (response.isSuccessful) {
                     addCardResult.postValue(Resource.success(response.body()!!))
@@ -32,7 +33,7 @@ class DbhRepository {
                     addCardResult.postValue(Resource.error(response.message() ?: "An error occurred", null))
                 }
             }
-            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+            override fun onFailure(call: Call<DbhAssignedRides>, t: Throwable) {
                 // handle error
                 addCardResult.postValue(Resource.error(t.localizedMessage ?: "An error occurred", null))
             }

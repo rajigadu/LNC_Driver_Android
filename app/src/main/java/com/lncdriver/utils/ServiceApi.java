@@ -1,5 +1,6 @@
 package com.lncdriver.utils;
 
+import com.lncdriver.dbh.model.DbhAssignedRides;
 import com.lncdriver.model.WeekList;
 
 import okhttp3.RequestBody;
@@ -24,6 +25,6 @@ public interface ServiceApi {
     Call<WeekList> fetchWeekList(@Query("driver_id") String driverId);
 
     @POST(Settings.URL_DBH_ASSIGNED_RIDE_LIST)
-    Call<ResponseBody>dbhAssignedRideList(@Query("driver_id") String driverId);
+    Call<DbhAssignedRides>dbhAssignedRideList(@Query("driver_id") String driverId);
 
 }
