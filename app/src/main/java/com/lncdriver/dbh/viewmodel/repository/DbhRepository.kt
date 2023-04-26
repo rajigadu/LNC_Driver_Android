@@ -62,4 +62,27 @@ class DbhRepository {
 
         return addCardResult
     }
+    fun dbhSCompleteRide(rideId: String, driverId: String, time: String): MutableLiveData<Resource<DbhAssignedRides>> {
+        val addCardResult = MutableLiveData<Resource<DbhAssignedRides>>()
+        addCardResult.postValue(Resource.loading(null))
+        apiService.dbhCompleteRide(rideId,driverId,time).enqueue(object : Callback<DbhAssignedRides> {
+            override fun onResponse(
+                call: Call<DbhAssignedRides>,
+                response: Response<DbhAssignedRides>
+            ) {
+                if (response.isSuccessful) {
+                    addCardResult.postValue(Resource.success(response.body()!!))
+                } else {
+                    // handle error
+                    addCardResult.postValue(Resource.error(response.message() ?: "An error occurred", null))
+                }
+            }
+            override fun onFailure(call: Call<DbhAssignedRides>, t: Throwable) {
+                // handle error
+                addCardResult.postValue(Resource.error(t.localizedMessage ?: "An error occurred", null))
+            }
+        })
+
+        return addCardResult
+    }
 }

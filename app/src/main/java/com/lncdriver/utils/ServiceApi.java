@@ -34,4 +34,11 @@ public interface ServiceApi {
             @Query("time") String time
     );
 
+    @POST(Settings.URL_DBH_COMPLETE_RIDE)
+    Call<DbhAssignedRides>dbhCompleteRide(
+            @Query("rideid") String rideId,
+            @Query("driverid") String driverId,
+            @Query("time") String time
+    );
+
 }
