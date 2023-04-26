@@ -25,5 +25,9 @@
 
     <dimen name="txtSize">35sp</dimen>
     <dimen name="logocionsize">120</dimen>
+    <dimen name="_14ssp">14</dimen>
+    <dimen name="_8sdp">8dp</dimen>
+    <dimen name="_16sdp">16dp</dimen>
+    <dimen name="_12ssp">12sp</dimen>
 
 </resources>

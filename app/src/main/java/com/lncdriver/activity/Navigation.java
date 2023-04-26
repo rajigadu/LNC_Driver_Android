@@ -52,6 +52,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.lncdriver.R;
 import com.lncdriver.dbh.DbhAssignRides;
+import com.lncdriver.dbh.base.BaseActivity;
 import com.lncdriver.fcm.LocationBackgroundService;
 import com.lncdriver.fcm.MyFirebaseMessagingService;
 import com.lncdriver.fragment.CurrentRides;
@@ -98,7 +99,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Navigation extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
+public class Navigation extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener,
         Home.OnFragmentInteractionListenerHome, Home.SendData, DriverType.OnFragmentInteractionListenerToHome,
         PendingCurrentRides.OnFragmentInteractionListenerPendingCurrebtRides {
 

@@ -89,6 +89,10 @@
     <string name="permission_denied_message">Unable to open <b>Gallery</b>.Go to Settings -> Permissions -> then allow permissions inorder to upload photos.></string>
     <string name="dbh_assign_rides">DBH-Assign Rides</string>
     <string name="dbh_rides">Driver By The Hour Rides</string>
+    <string name="action_ok">Ok</string>
+    <string name="retry">Retry</string>
+    <string name="cancel">Cancel</string>
+    <string name="something_went_wrong">Oops!, Something went wrong, Please try again later</string>
 
 
 </resources>

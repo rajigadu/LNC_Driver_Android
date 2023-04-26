@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.lncdriver.R
 import com.lncdriver.databinding.FragmentDbhAssignRidesLayoutBinding
 import com.lncdriver.dbh.adapter.DbhAssignedRidesAdapter
+import com.lncdriver.dbh.base.BaseActivity
 import com.lncdriver.dbh.model.DbhAssignedRideData
 import com.lncdriver.dbh.utils.ProgressCaller
 import com.lncdriver.dbh.utils.Resource
@@ -57,14 +59,25 @@ class DbhAssignRides : Fragment() {
                     binding?.refreshDbhRides?.isRefreshing = false
                     ProgressCaller.hideProgressDialog()
                     if (result.data?.status == "1") {
-                        initializeRideListAdapter(result?.data?.data)
+                        if (result?.data.data.isNotEmpty()) {
+                            initializeRideListAdapter(result?.data.data)
+                        } else {
+                            (activity as? BaseActivity)?.showAlertMessageDialog(
+                                message = "There are no more assigned rides available."
+                            )
+                        }
                     } else {
-                        //showAlertMessage()
+                        (activity as? BaseActivity)?.showAlertMessageDialog(
+                            message = result.data?.message ?: getString(R.string.something_went_wrong)
+                        )
                     }
                 }
                 Resource.Status.ERROR -> {
                     binding?.refreshDbhRides?.isRefreshing = false
                     ProgressCaller.hideProgressDialog()
+                    (activity as? BaseActivity)?.showAlertMessageDialog(
+                        message = result.data?.message ?: getString(R.string.something_went_wrong)
+                    )
                 }
             }
         }
