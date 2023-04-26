@@ -5,6 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     app:cardElevation="2dp"
     app:cardCornerRadius="4dp"
+    android:foreground="?selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
     android:layout_marginHorizontal="8dp"
     app:cardUseCompatPadding="true"
     android:layout_width="match_parent"
@@ -13,7 +16,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:padding="12dp">
 
         <TextView
             android:id="@+id/label_pickup"
@@ -28,33 +31,40 @@
 
         <TextView
             android:id="@+id/value_pickup"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            tools:text="Tirur Railway Station, Kerala, India"
+            android:maxLines="2"
+            android:paddingVertical="5dp"
             android:textColor="@color/black"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/label_pickup"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/label_pickup"
-            app:layout_constraintTop_toTopOf="@+id/label_pickup" />
+            app:layout_constraintTop_toTopOf="@+id/label_pickup"
+            tools:text="Tirur Railway Station, Kerala, India" />
 
         <TextView
             android:id="@+id/value_notes"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:maxLines="2"
             android:textColor="@color/black"
             android:textSize="16sp"
+            android:paddingVertical="5dp"
             app:layout_constraintBottom_toBottomOf="@+id/label_notes"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/label_notes"
             app:layout_constraintTop_toTopOf="@+id/label_notes"
             tools:text="Are you available for pickup" />
 
         <TextView
             android:id="@+id/value_date_and_time"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:singleLine="true"
             android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/label_date_and_time"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/label_date_and_time"
             app:layout_constraintTop_toTopOf="@+id/label_date_and_time"
             tools:text="2023-01-24 10:55 AM" />

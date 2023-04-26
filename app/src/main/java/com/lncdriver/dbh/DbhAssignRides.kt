@@ -4,13 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.lncdriver.R
 import com.lncdriver.databinding.FragmentDbhAssignRidesLayoutBinding
 import com.lncdriver.dbh.adapter.DbhAssignedRidesAdapter
 import com.lncdriver.dbh.base.BaseActivity
+import com.lncdriver.dbh.extension.navigate
 import com.lncdriver.dbh.model.DbhAssignedRideData
+import com.lncdriver.dbh.utils.FragmentCallback
 import com.lncdriver.dbh.utils.ProgressCaller
 import com.lncdriver.dbh.utils.Resource
 import com.lncdriver.dbh.viewmodel.DbhViewModel
@@ -84,8 +87,16 @@ class DbhAssignRides : Fragment() {
     }
 
     private fun initializeRideListAdapter(assignedRidesList: List<DbhAssignedRideData>) {
-        val dbhRidesAdapter = DbhAssignedRidesAdapter()
-
+        val dbhRidesAdapter = DbhAssignedRidesAdapter(callback = object : FragmentCallback {
+            override fun onResult(param1: Any?, param2: Any?, param3: Any?) {
+                val dbhRideData = param1 as? DbhAssignedRideData
+                (activity as? AppCompatActivity)?.navigate(
+                    fragment = DbhAssignedRidesDetails.newInstance(
+                        rideData = dbhRideData
+                    )
+                )
+            }
+        })
         binding?.recyclerDbRides?.apply {
             adapter = dbhRidesAdapter
         }

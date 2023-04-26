@@ -25,7 +25,7 @@
 
     <dimen name="txtSize">10sp</dimen>
     <dimen name="logocionsize">150</dimen>
-    <dimen name="_14ssp">14</dimen>
+    <dimen name="_14ssp">14sp</dimen>
     <dimen name="_8sdp">8dp</dimen>
     <dimen name="_16sdp">16dp</dimen>
     <dimen name="_12ssp">12sp</dimen>

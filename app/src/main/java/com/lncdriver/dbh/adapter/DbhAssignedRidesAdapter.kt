@@ -7,11 +7,12 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.lncdriver.databinding.LayoutDbhAssignRidesBinding
 import com.lncdriver.dbh.model.DbhAssignedRideData
+import com.lncdriver.dbh.utils.FragmentCallback
 
 /**
  * Create by Siru Malayil on 25-04-2023.
  */
-class DbhAssignedRidesAdapter: ListAdapter<DbhAssignedRideData, DbhAssignedRidesAdapter.ViewHolder>(DiffCallBack()) {
+class DbhAssignedRidesAdapter(private val callback: FragmentCallback? = null): ListAdapter<DbhAssignedRideData, DbhAssignedRidesAdapter.ViewHolder>(DiffCallBack()) {
 
 
 
@@ -32,6 +33,9 @@ class DbhAssignedRidesAdapter: ListAdapter<DbhAssignedRideData, DbhAssignedRides
             binding.valueDateAndTime.text = rideData?.otherdate
             binding.valueNotes.text = rideData?.notes
             binding.valuePickup.text = rideData?.pickup_address
+            binding.root.setOnClickListener {
+                callback?.onResult(rideData)
+            }
         }
 
     }
