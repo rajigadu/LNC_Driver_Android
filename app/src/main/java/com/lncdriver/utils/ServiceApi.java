@@ -27,4 +27,11 @@ public interface ServiceApi {
     @POST(Settings.URL_DBH_ASSIGNED_RIDE_LIST)
     Call<DbhAssignedRides>dbhAssignedRideList(@Query("driver_id") String driverId);
 
+    @POST(Settings.URL_DBH_START_RIDE)
+    Call<DbhAssignedRides>dbhStartRide(
+            @Query("rideid") String rideId,
+            @Query("driverid") String driverId,
+            @Query("time") String time
+    );
+
 }
