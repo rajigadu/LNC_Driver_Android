@@ -52,6 +52,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.lncdriver.R;
 import com.lncdriver.dbh.DbhAssignRides;
+import com.lncdriver.dbh.DbhRideHistoryFragment;
 import com.lncdriver.dbh.base.BaseActivity;
 import com.lncdriver.fcm.LocationBackgroundService;
 import com.lncdriver.fcm.MyFirebaseMessagingService;
@@ -365,6 +366,9 @@ public class Navigation extends BaseActivity implements NavigationView.OnNavigat
         } else if (id == R.id.nav_dbh_rides) {
             title = getString(R.string.dbh_rides);
             getFragment(12);
+        } else if (id == R.id.nav_dbh_history) {
+            title = getString(R.string.dbh_ride_history);
+            getFragment(13);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -390,116 +394,68 @@ public class Navigation extends BaseActivity implements NavigationView.OnNavigat
                 fragmenttransactions(fragment);
                 break;
             case 1:
-                // home
                 title = getString(R.string.drivertype);
-//                title = "<font color='#ffffff'>Driver&nbsp; </font><font color='#8bbc50'> Type</font>";
                 fragment = new DriverType();
                 fragmenttransactions(fragment);
                 break;
-
             case 2:
-                // photos
                 title = getString(R.string.partners);
-//                title = "<font color='#ffffff'>Manage&nbsp; </font><font color='#8bbc50'> Partners</font>";
                 fragment = new Partners();
                 fragmenttransactions(fragment);
                 break;
-//            case 4:
-//                // movies fragment
-//                title = getString(R.string.criderequests);
-////                title = "<font color='#ffffff'>ASAP &nbsp; </font><font color='#8bbc50'> rides</font>";
-//                fragment = new PendingCurrentRides();
-//                fragmenttransactions(fragment);
-//                break;
-
             case 3:
-                // movies fragment
-              //  Utils.logError(MyFirebaseMessagingService.TAG, navItemIndex + " ");
                 title = getString(R.string.frequests);
-//                title = "<font color='#ffffff'>Ride&nbsp; </font><font color='#8bbc50'> Reservations</font>";
                 fragment = new FutureRideRequests();
                 fragmenttransactions(fragment);
                 break;
-
             case 4:
-                // movies fragment
                 title = getString(R.string.futurerides);
-//                title = "<font color='#ffffff'> Accepted </font><font color='#ffffff'> Future</font><font color='#8bbc50'> Rides</font>";
                 fragment = new FutureRides();
                 fragmentTransactionsChat(fragment);
                 break;
-
-
-
             case 5:
-                // movies fragment//
                  title = getString(R.string.fhistory);
-//                title = "<font color='#ffffff'>Ride&nbsp; </font><font color='#8bbc50'> History</font>";
                 fragment = new RideHistory();
                 fragmenttransactions(fragment);
                 break;
-
-
             case 6:
-                // movies fragment
                 title = getString(R.string.payment_history);
-//                title = "<font color='#ffffff'>Payment&nbsp; </font><font color='#8bbc50'> History</font>";
                 fragment = new PaymentListHistory();
                 fragmenttransactions(fragment);
                 break;
-
-
             case 7:
-                // movies fragment
                 title = getString(R.string.phistory);
-//                title = "<font color='#ffffff'>Payment&nbsp; </font><font color='#8bbc50'> History</font>";
                 fragment = new PaymentHistoryByWeek();
                 fragmenttransactions(fragment);
                 break;
-
-
             case 8:
-                // movies fragment
                 title = getString(R.string.nav_my_reward_program);
-//                title = "<font color='#ffffff'>My&nbsp; </font><font color='#8bbc50'> Reward</font>";
                 fragment = new MyRewardProgramFragment();
                 fragmenttransactions(fragment);
                 break;
-
             case 9:
-                // movies fragment
                 title = getString(R.string.settings);
                 fragment = new Settings();
                 fragmenttransactions(fragment);
                 break;
-
-
-
-
             case 10:
-                // movies fragment//
                 title = getString(R.string.handbook);
-//                title = "<font color='#ffffff'>Ride&nbsp; </font><font color='#8bbc50'> History</font>";
                 fragment = new WebFragment();
                 fragmenttransactions(fragment);
-//                String url = "https://lnc.latenightchauffeurs.com/lnc-administrator/admin/handbook_ios.php";
-//                Intent i = new Intent(Intent.ACTION_VIEW);
-//                i.setData(Uri.parse(url));
-//                startActivity(i);
                 break;
-
-
-
             case 11:
                 logoutRequest();
                 break;
-
             case 12:
                 title = getString(R.string.dbh_rides);
                 fragment = new DbhAssignRides();
                 fragmenttransactions(fragment);
                 break;
-
+            case 13:
+                title = getString(R.string.dbh_ride_history);
+                fragment = new DbhRideHistoryFragment();
+                fragmenttransactions(fragment);
+                break;
             default:
                 break;
         }

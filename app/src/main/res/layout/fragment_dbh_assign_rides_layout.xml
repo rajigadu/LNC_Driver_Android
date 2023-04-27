@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/layout_dbh_assign_rides" />
+            tools:listitem="@layout/dbh_ride_history_layout" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

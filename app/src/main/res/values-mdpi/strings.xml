@@ -7,4 +7,9 @@
     <string name="cancel">Cancel</string>
     <string name="something_went_wrong">Oops!, Something went wrong, Please try again later</string>
     <string name="complete_ride">Complete Ride</string>
+    <string name="dbh_ride_history">DBH-Ride History</string>
+    <string name="stops">Stops</string>
+    <string name="customer_name">Customer Name:</string>
+    <string name="notes">Notes :</string>
+    <string name="distance">Distance :</string>
 </resources>

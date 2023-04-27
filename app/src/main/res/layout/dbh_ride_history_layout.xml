@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/off_white"
+        app:cardUseCompatPadding="true"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_10"
+            android:background="@color/off_white">
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_smallsize"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Date : 01-17-2023 \nTime : 08:35 PM" />
+
+            <TextView
+                android:id="@+id/label_customer_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/date"
+                android:layout_alignParentStart="true"
+                android:text="@string/customer_name"
+                android:textColor="@color/green"
+                android:textSize="@dimen/text_smallsize"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/date" />
+
+            <TextView
+                android:id="@+id/customer_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/date"
+                android:textColor="@color/black_light"
+                android:textSize="@dimen/text_smallsize"
+                android:textStyle="bold"
+                android:maxLines="2"
+                android:layout_marginStart="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/label_customer_name"
+                app:layout_constraintTop_toTopOf="@+id/label_customer_name"
+                tools:text="Abin Koshi Cheriyan" />
+
+            <TextView
+                android:id="@+id/pickup_address"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/customer_name"
+                android:textColor="@color/black_light"
+                android:textSize="@dimen/text_smallsize"
+                android:gravity="center"
+                android:maxLines="3"
+                android:paddingVertical="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/customer_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/customer_name"
+                tools:text="Guntur, Andhra Pradesh, India" />
+
+            <TextView
+                android:id="@+id/lable_notes"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/notes"
+                android:textColor="@color/black_light"
+                android:textSize="@dimen/text_smallsize"
+                app:layout_constraintEnd_toEndOf="@+id/label_distance"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pickup_address" />
+
+            <TextView
+                android:id="@+id/tv_notes"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/green"
+                android:layout_marginStart="8dp"
+                android:textSize="@dimen/text_smallsize"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/label_distance"
+                app:layout_constraintTop_toTopOf="@+id/lable_notes"
+                tools:text="Its an emergency for me to travel, Pls do the needful" />
+
+            <TextView
+                android:id="@+id/label_distance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/distance"
+                android:textColor="@color/black_light"
+                android:textSize="@dimen/text_smallsize"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_notes" />
+
+            <TextView
+                android:id="@+id/distance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/green"
+                android:textSize="@dimen/text_smallsize"
+                app:layout_constraintStart_toStartOf="@+id/tv_notes"
+                app:layout_constraintTop_toTopOf="@+id/label_distance"
+                tools:text="6.96 km" />
+            
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

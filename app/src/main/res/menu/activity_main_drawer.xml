@@ -47,6 +47,11 @@
             android:title="@string/fhistory" />
 
         <item
+            android:id="@+id/nav_dbh_history"
+            android:icon="@drawable/history"
+            android:title="@string/dbh_ride_history" />
+
+        <item
             android:id="@+id/nav_p_history"
             android:icon="@drawable/payment"
             android:title="@string/payment_history" />

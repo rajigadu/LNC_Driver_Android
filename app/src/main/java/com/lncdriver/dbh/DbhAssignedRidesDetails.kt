@@ -66,7 +66,12 @@ class DbhAssignedRidesDetails : Fragment() {
 
         }
         binding?.btnCompleteRide?.setOnClickListener {
-            dbhViewModel?.dbhCompleteRide(preferences?.userId ?: "")?.observe(viewLifecycleOwner) { result ->
+            dbhViewModel?.dbhCompleteRide(
+                userId = preferences?.userId ?: "",
+                bookingId = rideData?.booking_type ?: "", //TODO confirm this as booking_id
+                payDateTime = rideData?.otherdate ?: "", //TODO confirm this as payDateTime
+                endTime = rideData?.end_time ?: "" //TODO confirm this as endTime
+            )?.observe(viewLifecycleOwner) { result ->
                 when(result.status) {
                     Resource.Status.LOADING -> {
 
