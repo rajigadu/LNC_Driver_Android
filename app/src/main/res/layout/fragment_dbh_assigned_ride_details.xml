@@ -100,7 +100,7 @@
                 android:layout_height="60dp"
                 android:layout_marginBottom="24dp"
                 app:layout_constraintBottom_toTopOf="@+id/pickup"
-                app:layout_constraintStart_toStartOf="@+id/gotouser"
+                app:layout_constraintStart_toStartOf="@+id/btnGoToUser"
                 app:srcCompat="@drawable/profile" />
 
             <TextView
@@ -111,13 +111,13 @@
                 android:gravity="center"
                 android:textColor="@color/white"
                 android:textSize="16sp"
-                app:layout_constraintBottom_toTopOf="@+id/gotouser"
+                app:layout_constraintBottom_toTopOf="@+id/btnGoToUser"
                 app:layout_constraintEnd_toEndOf="@+id/btnCancelRide"
-                app:layout_constraintStart_toStartOf="@+id/gotouser"
+                app:layout_constraintStart_toStartOf="@+id/btnGoToUser"
                 tools:text="Pickup: Kerala , India" />
 
             <Button
-                android:id="@+id/gotouser"
+                android:id="@+id/btnGoToUser"
                 style="@style/MaterialAnimations.Buttonblack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -125,14 +125,16 @@
                 android:background="@android:color/transparent"
                 android:text="GO TO USER"
                 android:textAllCaps="false"
+                android:drawableEnd="@drawable/navigation"
+                android:drawablePadding="12dp"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_smallsize"
                 android:visibility="visible"
-                app:layout_constraintBottom_toTopOf="@+id/complete"
-                app:layout_constraintStart_toStartOf="@+id/complete" />
+                app:layout_constraintBottom_toTopOf="@+id/btnStartRide"
+                app:layout_constraintStart_toStartOf="@+id/btnStartRide" />
 
             <Button
-                android:id="@+id/complete"
+                android:id="@+id/btnStartRide"
                 style="@style/MaterialAnimations.Buttonblack"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
@@ -144,6 +146,22 @@
                 android:textSize="@dimen/text_smallsize"
                 app:layout_constraintBottom_toTopOf="@+id/btnCancelRide"
                 app:layout_constraintStart_toStartOf="@+id/btnCancelRide" />
+
+            <Button
+                android:id="@+id/btnCompleteRide"
+                style="@style/MaterialAnimations.Buttonblack"
+                android:layout_width="210dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="24dp"
+                android:text="@string/complete_ride"
+                android:textAllCaps="false"
+                android:textColor="@color/white_full"
+                android:textSize="@dimen/text_smallsize"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toTopOf="@+id/btnCancelRide"
+                app:layout_constraintStart_toStartOf="@+id/btnCancelRide" />
+
 
             <Button
                 android:id="@+id/btnCancelRide"
@@ -161,17 +179,6 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
-
-            <ImageView
-                android:id="@+id/dnavigation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:src="@drawable/navigation"
-                android:visibility="visible"
-                app:layout_constraintBottom_toBottomOf="@+id/gotouser"
-                app:layout_constraintStart_toEndOf="@+id/gotouser"
-                app:layout_constraintTop_toTopOf="@+id/gotouser" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

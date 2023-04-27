@@ -1,6 +1,8 @@
 package com.lncdriver.utils;
 
 import com.lncdriver.dbh.model.DbhAssignedRides;
+import com.lncdriver.dbh.model.DbhRideHistory;
+import com.lncdriver.dbh.model.DefaultResponse;
 import com.lncdriver.model.WeekList;
 
 import okhttp3.RequestBody;
@@ -28,7 +30,7 @@ public interface ServiceApi {
     Call<DbhAssignedRides>dbhAssignedRideList(@Query("driver_id") String driverId);
 
     @POST(Settings.URL_DBH_START_RIDE)
-    Call<DbhAssignedRides>dbhStartRide(
+    Call<DefaultResponse>dbhStartRide(
             @Query("rideid") String rideId,
             @Query("driverid") String driverId,
             @Query("time") String time
@@ -36,9 +38,13 @@ public interface ServiceApi {
 
     @POST(Settings.URL_DBH_COMPLETE_RIDE)
     Call<DbhAssignedRides>dbhCompleteRide(
-            @Query("rideid") String rideId,
-            @Query("driverid") String driverId,
-            @Query("time") String time
+            @Query("user_id") String userId,
+            @Query("booking_id") String bookingId,
+            @Query("payDateTime") String payDateTime,
+            @Query("end_time") String endTime
     );
+
+    @POST(Settings.URL_DBH_RIDE_HISTORY)
+    Call<DbhRideHistory>dbhRideHistory(@Query("driver_id") String driverId);
 
 }

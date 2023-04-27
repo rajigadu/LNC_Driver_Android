@@ -2,6 +2,7 @@ package com.lncdriver.dbh
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -12,12 +13,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.lncdriver.activity.ViewCustomerFRideDetails
+import androidx.lifecycle.ViewModelProvider
+import com.lncdriver.R
 import com.lncdriver.databinding.FragmentDbhAssignedRideDetailsBinding
 import com.lncdriver.dbh.base.AlertMessageDialogFragment.Companion.ACTION_OK
 import com.lncdriver.dbh.base.BaseActivity
 import com.lncdriver.dbh.model.DbhAssignedRideData
+import com.lncdriver.dbh.model.DefaultResponse
 import com.lncdriver.dbh.utils.FragmentCallback
+import com.lncdriver.dbh.utils.ProgressCaller
+import com.lncdriver.dbh.utils.Resource
+import com.lncdriver.dbh.viewmodel.DbhViewModel
+import com.lncdriver.model.SavePref
 
 /**
  * Create by Siru Malayil on 26-04-2023.
@@ -26,6 +33,8 @@ class DbhAssignedRidesDetails : Fragment() {
 
     private var binding: FragmentDbhAssignedRideDetailsBinding? = null
     private var rideData: DbhAssignedRideData? = null
+    private var dbhViewModel: DbhViewModel? = null
+    private var preferences: SavePref? = null
 
     companion object {
         fun newInstance(rideData: DbhAssignedRideData? = null) = DbhAssignedRidesDetails().apply {
@@ -39,11 +48,14 @@ class DbhAssignedRidesDetails : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentDbhAssignedRideDetailsBinding.inflate(layoutInflater, container, false)
+        dbhViewModel = ViewModelProvider(this)[DbhViewModel::class.java]
         return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        preferences = SavePref()
+        preferences?.SavePref(activity)
 
         setViewData()
         onClickListener()
@@ -52,6 +64,21 @@ class DbhAssignedRidesDetails : Fragment() {
     private fun onClickListener() {
         binding?.btnChat?.setOnClickListener {
 
+        }
+        binding?.btnCompleteRide?.setOnClickListener {
+            dbhViewModel?.dbhCompleteRide(preferences?.userId ?: "")?.observe(viewLifecycleOwner) { result ->
+                when(result.status) {
+                    Resource.Status.LOADING -> {
+
+                    }
+                    Resource.Status.SUCCESS -> {
+
+                    }
+                    Resource.Status.ERROR -> {
+
+                    }
+                }
+            }
         }
         binding?.btnCall?.setOnClickListener {
             (activity as BaseActivity).showAlertMessageDialog(
@@ -68,8 +95,70 @@ class DbhAssignedRidesDetails : Fragment() {
                 }
             )
         }
+        binding?.btnGoToUser?.setOnClickListener {
+            launchPickupLocationInMap()
+        }
+
+        binding?.btnStartRide?.setOnClickListener {
+            startDbhRide()
+        }
     }
 
+    /**
+     * Here will invoke DBH Stat Ride API
+     */
+    private fun startDbhRide() {
+        dbhViewModel?.dbhStartRide(
+            driverId = preferences?.userId ?: "",
+            rideId = rideData?.id ?: "",
+            time = rideData?.time ?: ""
+        )?.observe(viewLifecycleOwner) { result ->
+            when(result.status) {
+                Resource.Status.LOADING -> { activity?.let { ProgressCaller.showProgressDialog(it) }}
+                Resource.Status.SUCCESS -> {
+                    val response = result.data
+                    if (response?.status == "1") {
+                        (activity as BaseActivity).showAlertMessageDialog(
+                            message = response.data.firstOrNull()?.msg ?: getString(R.string.something_went_wrong)
+                        )
+                    }
+                    ProgressCaller.hideProgressDialog()
+                }
+                Resource.Status.ERROR -> {
+                    (activity as BaseActivity).showAlertMessageDialog(
+                        message = result.data?.data?.firstOrNull()?.msg ?: getString(R.string.something_went_wrong)
+                    )
+                    ProgressCaller.hideProgressDialog()
+                }
+            }
+        }
+    }
+
+    /**
+     * Launch Google Map if existing in device and show the location route
+     * else will show a message to install
+     */
+    private fun launchPickupLocationInMap() {
+        try {
+            val add = ("google.navigation:q=" + rideData?.pickup_lat + ","
+                    + rideData?.pickup_long + "&mode=d")
+            val gmmIntentUri = Uri.parse(add)
+            val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+            mapIntent.setPackage("com.google.android.apps.maps")
+            startActivity(mapIntent)
+        } catch (anf: ActivityNotFoundException) {
+            (activity as BaseActivity).showAlertMessageDialog(
+                message = "Please Install Google Maps "
+            )
+        } catch (ex: Exception) {
+            ex.message
+        }
+    }
+
+    /**
+     * Phone Call permission will request here, once request accepted
+     * will invoke dialer dashboard
+     */
     private fun callPermission(number: String) {
         activity?.let { activity ->
             if (ContextCompat.checkSelfPermission(
