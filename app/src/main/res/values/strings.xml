@@ -99,6 +99,10 @@
     <string name="customer_name">Customer Name:</string>
     <string name="notes">Notes :</string>
     <string name="distance">Distance :</string>
+    <string name="ride_date">Ride Date :</string>
+    <string name="ride_start">Ride Start</string>
+    <string name="hourly_rate">Hourly Rate</string>
+    <string name="ride_total_time">Ride Total Time</string>
 
 
 </resources>

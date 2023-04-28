@@ -24,14 +24,25 @@
             android:background="@color/off_white">
 
             <TextView
-                android:id="@+id/date"
+                android:id="@+id/textView3"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ride_date"
+                android:textColor="@color/green"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_smallsize"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView3"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="Date : 01-17-2023 \nTime : 08:35 PM" />
+                tools:text="Date : 01-17-2023 Time : 08:35 PM" />
 
             <TextView
                 android:id="@+id/label_customer_name"
@@ -63,62 +74,72 @@
                 tools:text="Abin Koshi Cheriyan" />
 
             <TextView
+                android:id="@+id/label_ride_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ride_start"
+                android:textColor="@color/green"
+                android:paddingVertical="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/customer_name" />
+
+            <TextView
                 android:id="@+id/pickup_address"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/customer_name"
+                android:gravity="start"
+                android:maxLines="3"
+                android:padding="5dp"
+                android:layout_marginStart="8dp"
                 android:textColor="@color/black_light"
                 android:textSize="@dimen/text_smallsize"
-                android:gravity="center"
-                android:maxLines="3"
-                android:paddingVertical="8dp"
                 app:layout_constraintEnd_toEndOf="@+id/customer_name"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/label_ride_start"
                 app:layout_constraintTop_toBottomOf="@+id/customer_name"
                 tools:text="Guntur, Andhra Pradesh, India" />
 
             <TextView
-                android:id="@+id/lable_notes"
+                android:id="@+id/label_ride_total_time"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/notes"
+                android:text="@string/ride_total_time"
                 android:textColor="@color/black_light"
                 android:textSize="@dimen/text_smallsize"
-                app:layout_constraintEnd_toEndOf="@+id/label_distance"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pickup_address" />
 
             <TextView
-                android:id="@+id/tv_notes"
+                android:id="@+id/ride_total_time"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textColor="@color/green"
                 android:layout_marginStart="8dp"
                 android:textSize="@dimen/text_smallsize"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/label_distance"
-                app:layout_constraintTop_toTopOf="@+id/lable_notes"
-                tools:text="Its an emergency for me to travel, Pls do the needful" />
+                app:layout_constraintStart_toEndOf="@+id/label_ride_total_time"
+                app:layout_constraintTop_toTopOf="@+id/label_ride_total_time"
+                tools:text="1h 30m" />
 
             <TextView
-                android:id="@+id/label_distance"
+                android:id="@+id/label_hourly_rate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/distance"
+                android:text="@string/hourly_rate"
                 android:textColor="@color/black_light"
                 android:textSize="@dimen/text_smallsize"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_notes" />
+                app:layout_constraintTop_toBottomOf="@+id/ride_total_time" />
 
             <TextView
-                android:id="@+id/distance"
+                android:id="@+id/hourly_rate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/green"
                 android:textSize="@dimen/text_smallsize"
-                app:layout_constraintStart_toStartOf="@+id/tv_notes"
-                app:layout_constraintTop_toTopOf="@+id/label_distance"
-                tools:text="6.96 km" />
+                app:layout_constraintStart_toStartOf="@+id/ride_total_time"
+                app:layout_constraintTop_toTopOf="@+id/label_hourly_rate"
+                tools:text="$10.00" />
             
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

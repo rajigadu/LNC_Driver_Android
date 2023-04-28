@@ -34,10 +34,10 @@ class DbhRideHistoryAdapter(private val callback: FragmentCallback? = null)
         @SuppressLint("SetTextI18n")
         fun bindView(rideHistory: DbhRideHistoryData?) {
             binding.customerName.text = "${rideHistory?.first_name} ${rideHistory?.last_name}"
-            binding.date.text = "${rideHistory?.date}\n ${rideHistory?.time}"
+            binding.date.text = "${rideHistory?.date} ${rideHistory?.time}"
             binding.pickupAddress.text = rideHistory?.pickup_address
-            binding.tvNotes.text = rideHistory?.notes ?: ""
-            //binding.distance.text = rideHistory?. //TODO map distance data
+            binding.rideTotalTime.text = "${rideHistory?.ride_total_time}:0 Hrs"
+            binding.hourlyRate.text =  "${rideHistory?.hourly_rate}/Hrs"
         }
 
     }
