@@ -49,7 +49,6 @@ class AlertMessageDialogFragment : DialogFragment() {
         dialog?.apply {
             requestWindowFeature(Window.FEATURE_NO_TITLE)
             setCancelable(true)
-            setCanceledOnTouchOutside(true)
             setStyle(STYLE_NO_FRAME, android.R.style.Theme)
             window?.setBackgroundDrawableResource(android.R.color.transparent)
         }
