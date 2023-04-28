@@ -66,7 +66,7 @@
         Website: %5$s
     ]]>
     </string>
-    <string name="cancel_ride">Cancel</string>
+    <string name="cancel_ride">Cancel Ride</string>
     <string name="criminal_background_check">I authorize Late Night Chauffeurs to conduct a criminal background check</string>
     <string name="certification_declaration">I certify that the information entered in the application form above is true and correct to the best of my knowledge. I understand that any false statements may disqualify my application</string>
     <string name="w9_form">W9 Form</string>
@@ -103,6 +103,9 @@
     <string name="ride_start">Ride Start</string>
     <string name="hourly_rate">Hourly Rate</string>
     <string name="ride_total_time">Ride Total Time</string>
+    <string name="enter_your_messege">Enter Your Message</string>
+    <string name="reason_for_cancelling_ride">Reason For Cancelling Ride</string>
+    <string name="submit">Submit</string>
 
 
 </resources>
