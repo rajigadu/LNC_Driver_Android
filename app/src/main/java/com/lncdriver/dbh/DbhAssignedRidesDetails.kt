@@ -20,11 +20,13 @@ import com.lncdriver.dbh.base.AlertMessageDialogFragment.Companion.ACTION_OK
 import com.lncdriver.dbh.base.BaseActivity
 import com.lncdriver.dbh.model.DbhAssignedRideData
 import com.lncdriver.dbh.model.DefaultResponse
+import com.lncdriver.dbh.utils.DbhUtils
 import com.lncdriver.dbh.utils.FragmentCallback
 import com.lncdriver.dbh.utils.ProgressCaller
 import com.lncdriver.dbh.utils.Resource
 import com.lncdriver.dbh.viewmodel.DbhViewModel
 import com.lncdriver.model.SavePref
+import com.lncdriver.utils.Utils
 
 /**
  * Create by Siru Malayil on 26-04-2023.
@@ -66,24 +68,7 @@ class DbhAssignedRidesDetails : Fragment() {
 
         }
         binding?.btnCompleteRide?.setOnClickListener {
-            dbhViewModel?.dbhCompleteRide(
-                userId = preferences?.userId ?: "",
-                bookingId = rideData?.booking_type ?: "", //TODO confirm this as booking_id
-                payDateTime = rideData?.otherdate ?: "", //TODO confirm this as payDateTime
-                endTime = rideData?.end_time ?: "" //TODO confirm this as endTime
-            )?.observe(viewLifecycleOwner) { result ->
-                when(result.status) {
-                    Resource.Status.LOADING -> {
-
-                    }
-                    Resource.Status.SUCCESS -> {
-
-                    }
-                    Resource.Status.ERROR -> {
-
-                    }
-                }
-            }
+            completeRide()
         }
         binding?.btnCall?.setOnClickListener {
             (activity as BaseActivity).showAlertMessageDialog(
@@ -105,7 +90,85 @@ class DbhAssignedRidesDetails : Fragment() {
         }
 
         binding?.btnStartRide?.setOnClickListener {
-            startDbhRide()
+            (activity as? BaseActivity)?.showAlertMessageDialog(
+                message = "Are you sure want to start this ride!",
+                negativeButton = true,
+                fragmentCallback = object : FragmentCallback {
+                    override fun onResult(param1: Any?, param2: Any?, param3: Any?) {
+                        when(param1) {
+                            ACTION_OK -> {
+                                startDbhRide()
+                            }
+                        }
+                    }
+                }
+            )
+        }
+        binding?.btnCancelRide?.setOnClickListener {
+            (activity as? BaseActivity)?.showAlertMessageDialog(
+                message = "Are you sure want to cancel this ride ?",
+                negativeButton = true,
+                fragmentCallback = object : FragmentCallback {
+                    override fun onResult(param1: Any?, param2: Any?, param3: Any?) {
+                        when(param1) {
+                            ACTION_OK -> {
+                                cancelDbhRide()
+                            }
+                        }
+                    }
+                }
+            )
+        }
+    }
+
+    private fun cancelDbhRide() {
+        dbhViewModel?.cancelDbhRide(
+            driverId = preferences?.userId ?: "",
+            rideId = rideData?.id ?: ""
+        )?.observe(viewLifecycleOwner) { result ->
+            when(result.status) {
+                Resource.Status.LOADING -> { activity?.let { ProgressCaller.showProgressDialog(it) }}
+                Resource.Status.SUCCESS -> {
+
+                    ProgressCaller.hideProgressDialog()
+                }
+                Resource.Status.ERROR -> {
+
+                    ProgressCaller.hideProgressDialog()
+                }
+            }
+        }
+    }
+
+    /**
+     * Started Ride will complete here, API calling
+     */
+    private fun completeRide() {
+        dbhViewModel?.dbhCompleteRide(
+            userId = rideData?.user_id ?: "",
+            bookingId = rideData?.id ?: "",
+            payDateTime = DbhUtils.getCurrentDateAndTime() ?: "",
+            endTime = DbhUtils.getCurrentDateAndTime() ?: ""
+        )?.observe(viewLifecycleOwner) { result ->
+            when(result.status) {
+                Resource.Status.LOADING -> { activity?.let { ProgressCaller.showProgressDialog(it) }}
+                Resource.Status.SUCCESS -> {
+                    (activity as? BaseActivity)?.showAlertMessageDialog(
+                        message = result.data?.data?.firstOrNull()?.msg,
+                        fragmentCallback = object : FragmentCallback{
+                            override fun onResult(param1: Any?, param2: Any?, param3: Any?) {
+                                activity?.finish()
+                            }
+                        }
+                    )
+                    ProgressCaller.hideProgressDialog()
+                }
+                Resource.Status.ERROR -> {
+                    (activity as? BaseActivity)?.showAlertMessageDialog(
+                        message = result.data?.data?.firstOrNull()?.msg)
+                    ProgressCaller.hideProgressDialog()
+                }
+            }
         }
     }
 
@@ -124,14 +187,19 @@ class DbhAssignedRidesDetails : Fragment() {
                     val response = result.data
                     if (response?.status == "1") {
                         (activity as BaseActivity).showAlertMessageDialog(
-                            message = response.data.firstOrNull()?.msg ?: getString(R.string.something_went_wrong)
+                            message = response.msg,
+                            fragmentCallback = object : FragmentCallback {
+                                override fun onResult(param1: Any?, param2: Any?, param3: Any?) {
+                                    activity?.supportFragmentManager?.popBackStackImmediate()
+                                }
+                            }
                         )
                     }
                     ProgressCaller.hideProgressDialog()
                 }
                 Resource.Status.ERROR -> {
                     (activity as BaseActivity).showAlertMessageDialog(
-                        message = result.data?.data?.firstOrNull()?.msg ?: getString(R.string.something_went_wrong)
+                        message = result.data?.msg ?: getString(R.string.something_went_wrong)
                     )
                     ProgressCaller.hideProgressDialog()
                 }
@@ -198,5 +266,18 @@ class DbhAssignedRidesDetails : Fragment() {
         binding?.customerNumber?.text = rideData?.mobile
         binding?.pickupDateAndTime?.text = "Pickup Date/Time: ${rideData?.otherdate} ${rideData?.time}"
         binding?.pickup?.text = "Pickup: ${rideData?.pickup_address}"
+
+        if (rideData?.status == "1"){
+            binding?.btnCancelRide?.visibility = View.GONE
+            binding?.btnStartRide?.visibility = View.INVISIBLE
+            binding?.btnCompleteRide?.visibility = View.VISIBLE
+            binding?.rideStartTime?.visibility = View.VISIBLE
+            binding?.rideStartTime?.text = "Ride Start Time: ${rideData?.ride_start_time}"
+        } else {
+            binding?.btnCancelRide?.visibility = View.VISIBLE
+            binding?.btnStartRide?.visibility = View.VISIBLE
+            binding?.btnCompleteRide?.visibility = View.INVISIBLE
+            binding?.rideStartTime?.visibility = View.INVISIBLE
+        }
     }
 }

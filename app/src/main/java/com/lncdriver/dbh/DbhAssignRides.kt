@@ -71,7 +71,7 @@ class DbhAssignRides : Fragment() {
                         }
                     } else {
                         (activity as? BaseActivity)?.showAlertMessageDialog(
-                            message = result.data?.message ?: getString(R.string.something_went_wrong)
+                            message = result.data?.data?.firstOrNull()?.message ?: getString(R.string.something_went_wrong)
                         )
                     }
                 }

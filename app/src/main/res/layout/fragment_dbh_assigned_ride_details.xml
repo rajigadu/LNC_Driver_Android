@@ -17,7 +17,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingVertical="16dp">
+            android:padding="16dp">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/btn_chat"
@@ -54,15 +54,28 @@
 
             <TextView
                 android:id="@+id/pickup_date_and_time"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
                 android:gravity="center"
                 android:textColor="@color/black"
-                app:layout_constraintBottom_toTopOf="@+id/appCompatImageView"
-                app:layout_constraintEnd_toEndOf="@+id/btnCancelRide"
-                app:layout_constraintStart_toStartOf="@+id/appCompatImageView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/ride_start_time"
                 tools:text="Pickup Date/Time: 04-25-2023 08:15 PM" />
+
+            <TextView
+                android:id="@+id/ride_start_time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:visibility="invisible"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/appCompatImageView"
+                app:layout_constraintEnd_toEndOf="@+id/pickup_date_and_time"
+                app:layout_constraintStart_toStartOf="@+id/pickup_date_and_time"
+                tools:text="Ride Start Time: 08:15 PM" />
+
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"
@@ -105,14 +118,14 @@
 
             <TextView
                 android:id="@+id/pickup"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:gravity="center"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/btnGoToUser"
-                app:layout_constraintEnd_toEndOf="@+id/btnCancelRide"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/btnGoToUser"
                 tools:text="Pickup: Kerala , India" />
 
@@ -145,7 +158,7 @@
                 android:textColor="@color/white_full"
                 android:textSize="@dimen/text_smallsize"
                 app:layout_constraintBottom_toTopOf="@+id/btnCancelRide"
-                app:layout_constraintStart_toStartOf="@+id/btnCancelRide" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <Button
                 android:id="@+id/btnCompleteRide"
@@ -160,7 +173,7 @@
                 android:textSize="@dimen/text_smallsize"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toTopOf="@+id/btnCancelRide"
-                app:layout_constraintStart_toStartOf="@+id/btnCancelRide" />
+                app:layout_constraintStart_toStartOf="parent" />
 
 
             <Button
@@ -175,7 +188,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/white_full"
                 android:textSize="@dimen/text_mediumsize"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />

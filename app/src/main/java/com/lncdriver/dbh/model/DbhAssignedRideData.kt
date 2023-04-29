@@ -44,5 +44,6 @@ data class DbhAssignedRideData(
     val status: String,
     val time: String,
     val tip_status: String,
-    val user_id: String
+    val user_id: String,
+    val message: String
 )

@@ -2,6 +2,7 @@ package com.lncdriver.utils;
 
 import com.lncdriver.dbh.model.DbhAssignedRides;
 import com.lncdriver.dbh.model.DbhRideHistory;
+import com.lncdriver.dbh.model.DbhRideStart;
 import com.lncdriver.dbh.model.DefaultResponse;
 import com.lncdriver.model.WeekList;
 
@@ -30,14 +31,14 @@ public interface ServiceApi {
     Call<DbhAssignedRides>dbhAssignedRideList(@Query("driver_id") String driverId);
 
     @POST(Settings.URL_DBH_START_RIDE)
-    Call<DefaultResponse>dbhStartRide(
+    Call<DbhRideStart>dbhStartRide(
             @Query("rideid") String rideId,
             @Query("driverid") String driverId,
             @Query("time") String time
     );
 
     @POST(Settings.URL_DBH_COMPLETE_RIDE)
-    Call<DbhAssignedRides>dbhCompleteRide(
+    Call<DefaultResponse>dbhCompleteRide(
             @Query("user_id") String userId,
             @Query("booking_id") String bookingId,
             @Query("payDateTime") String payDateTime,
@@ -46,5 +47,11 @@ public interface ServiceApi {
 
     @POST(Settings.URL_DBH_RIDE_HISTORY)
     Call<DbhRideHistory>dbhRideHistory(@Query("driver_id") String driverId);
+
+    @POST(Settings.URL_DBH_CANCEL_RIDE)
+    Call<DefaultResponse>cancelDbhRide(
+            @Query("driver_id") String driverId,
+            @Query("ride_id") String rideId
+    );
 
 }
