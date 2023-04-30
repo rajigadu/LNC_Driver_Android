@@ -157,7 +157,7 @@ class DbhAssignedRidesDetails : Fragment() {
                         message = result.data?.data?.firstOrNull()?.msg,
                         fragmentCallback = object : FragmentCallback{
                             override fun onResult(param1: Any?, param2: Any?, param3: Any?) {
-                                activity?.finish()
+                                activity?.supportFragmentManager?.popBackStackImmediate()
                             }
                         }
                     )
@@ -190,7 +190,7 @@ class DbhAssignedRidesDetails : Fragment() {
                             message = response.msg,
                             fragmentCallback = object : FragmentCallback {
                                 override fun onResult(param1: Any?, param2: Any?, param3: Any?) {
-                                    activity?.finish()
+                                    activity?.supportFragmentManager?.popBackStackImmediate()
                                 }
                             }
                         )
