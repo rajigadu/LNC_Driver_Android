@@ -26,6 +26,7 @@ import com.lncdriver.dbh.utils.ProgressCaller
 import com.lncdriver.dbh.utils.Resource
 import com.lncdriver.dbh.viewmodel.DbhViewModel
 import com.lncdriver.model.SavePref
+import java.io.Serializable
 
 /**
  * Create by Siru Malayil on 26-04-2023.
@@ -68,7 +69,7 @@ class DbhAssignedRidesDetails : Fragment() {
             dmap["userid"] = rideData?.user_id ?: ""
             startActivity(
                 Intent(activity,ActivityUserChat::class.java).apply {
-
+                    putExtra("map", dmap as Serializable)
                 }
             )
         }
