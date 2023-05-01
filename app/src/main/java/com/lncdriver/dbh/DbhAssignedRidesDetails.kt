@@ -15,18 +15,17 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.lncdriver.R
+import com.lncdriver.activity.ActivityUserChat
 import com.lncdriver.databinding.FragmentDbhAssignedRideDetailsBinding
 import com.lncdriver.dbh.base.AlertMessageDialogFragment.Companion.ACTION_OK
 import com.lncdriver.dbh.base.BaseActivity
 import com.lncdriver.dbh.model.DbhAssignedRideData
-import com.lncdriver.dbh.model.DefaultResponse
 import com.lncdriver.dbh.utils.DbhUtils
 import com.lncdriver.dbh.utils.FragmentCallback
 import com.lncdriver.dbh.utils.ProgressCaller
 import com.lncdriver.dbh.utils.Resource
 import com.lncdriver.dbh.viewmodel.DbhViewModel
 import com.lncdriver.model.SavePref
-import com.lncdriver.utils.Utils
 
 /**
  * Create by Siru Malayil on 26-04-2023.
@@ -65,7 +64,13 @@ class DbhAssignedRidesDetails : Fragment() {
 
     private fun onClickListener() {
         binding?.btnChat?.setOnClickListener {
+            val dmap = HashMap<String, Any>()
+            dmap["userid"] = rideData?.user_id ?: ""
+            startActivity(
+                Intent(activity,ActivityUserChat::class.java).apply {
 
+                }
+            )
         }
         binding?.btnCompleteRide?.setOnClickListener {
             completeRide()
