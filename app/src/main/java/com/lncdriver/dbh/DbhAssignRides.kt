@@ -1,18 +1,19 @@
 package com.lncdriver.dbh
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.lncdriver.R
 import com.lncdriver.databinding.FragmentDbhAssignRidesLayoutBinding
+import com.lncdriver.dbh.activities.DbhAssignedRidesDetails
 import com.lncdriver.dbh.adapter.DbhAssignedRidesAdapter
 import com.lncdriver.dbh.base.BaseActivity
-import com.lncdriver.dbh.extension.navigate
 import com.lncdriver.dbh.model.DbhAssignedRideData
+import com.lncdriver.dbh.utils.DbhUtils
 import com.lncdriver.dbh.utils.FragmentCallback
 import com.lncdriver.dbh.utils.ProgressCaller
 import com.lncdriver.dbh.utils.Resource
@@ -49,7 +50,11 @@ class DbhAssignRides : Fragment() {
             binding?.refreshDbhRides?.isRefreshing = true
             getDbhAssignedRides()
         }
+    }
 
+    override fun onResume() {
+        super.onResume()
+        initializeRideListAdapter()
         getDbhAssignedRides()
     }
 
@@ -64,6 +69,7 @@ class DbhAssignRides : Fragment() {
                     if (result.data?.status == "1") {
                         if (result?.data.data.isNotEmpty()) {
                             initializeRideListAdapter(result?.data.data)
+                            dbhRidesAdapter.submitList(result?.data.data)
                         } else {
                             (activity as? BaseActivity)?.showAlertMessageDialog(
                                 message = "There are no more assigned rides available."
@@ -86,17 +92,18 @@ class DbhAssignRides : Fragment() {
         }
     }
 
-    private fun initializeRideListAdapter(assignedRidesList: List<DbhAssignedRideData>) {
-        val dbhRidesAdapter = DbhAssignedRidesAdapter(callback = object : FragmentCallback {
-            override fun onResult(param1: Any?, param2: Any?, param3: Any?) {
-                val dbhRideData = param1 as? DbhAssignedRideData
-                (activity as? AppCompatActivity)?.navigate(
-                    fragment = DbhAssignedRidesDetails.newInstance(
-                        rideData = dbhRideData
-                    )
-                )
-            }
-        })
+    private val dbhRidesAdapter = DbhAssignedRidesAdapter(callback = object : FragmentCallback {
+        override fun onResult(param1: Any?, param2: Any?, param3: Any?) {
+            val dbhRideData = param1 as? DbhAssignedRideData
+            startActivity(
+                Intent(activity, DbhAssignedRidesDetails::class.java).apply {
+                    putExtra(DbhUtils.DBH_RIDE_DATA,dbhRideData)
+                }
+            )
+        }
+    })
+
+    private fun initializeRideListAdapter(assignedRidesList: List<DbhAssignedRideData>? = null) {
         binding?.recyclerDbRides?.apply {
             adapter = dbhRidesAdapter
         }

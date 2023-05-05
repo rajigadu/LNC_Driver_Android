@@ -9,6 +9,8 @@ import java.util.*
  */
 object DbhUtils {
 
+    const val DBH_RIDE_DATA = "dh-ride-data"
+
     @SuppressLint("SimpleDateFormat")
     fun getCurrentDateAndTime(): String? {
         val todayDate = Calendar.getInstance().time

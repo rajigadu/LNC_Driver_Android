@@ -8,6 +8,7 @@ import com.lncdriver.dbh.model.DefaultResponse
 import com.lncdriver.dbh.utils.Resource
 import com.lncdriver.utils.ServiceApi
 import com.lncdriver.utils.ServiceGenerator
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -65,11 +66,19 @@ class DbhRepository {
 
         return startRideResponse
     }
-    fun dbhCompleteRide(userId: String, bookingId: String, payDateTime: String, endTime: String):
+    fun dbhCompleteRide(jsonData: JSONObject):
             MutableLiveData<Resource<DefaultResponse>> {
         val completeRideResponse = MutableLiveData<Resource<DefaultResponse>>()
         completeRideResponse.postValue(Resource.loading(null))
-        apiService.dbhCompleteRide(userId,bookingId,payDateTime,endTime).enqueue(object : Callback<DefaultResponse> {
+        apiService.dbhCompleteRide(
+            jsonData.getString("userid"),
+            jsonData.getString("booking_id"),
+            jsonData.getString("pay_datetime"),
+            jsonData.getString("end_time"),
+            jsonData.getString("d_address"),
+            jsonData.getString("d_lat"),
+            jsonData.getString("d_long")
+        ).enqueue(object : Callback<DefaultResponse> {
             override fun onResponse(
                 call: Call<DefaultResponse>,
                 response: Response<DefaultResponse>

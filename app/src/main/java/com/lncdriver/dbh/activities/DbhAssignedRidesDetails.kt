@@ -1,19 +1,23 @@
-package com.lncdriver.dbh
+package com.lncdriver.dbh.activities
 
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.ActivityNotFoundException
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.location.Geocoder
+import android.location.Location
+import android.location.LocationManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.view.LayoutInflater
+import android.util.Log
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.maps.model.LatLng
 import com.lncdriver.R
 import com.lncdriver.activity.ActivityUserChat
 import com.lncdriver.databinding.FragmentDbhAssignedRideDetailsBinding
@@ -25,50 +29,69 @@ import com.lncdriver.dbh.utils.FragmentCallback
 import com.lncdriver.dbh.utils.ProgressCaller
 import com.lncdriver.dbh.utils.Resource
 import com.lncdriver.dbh.viewmodel.DbhViewModel
+import com.lncdriver.fragment.Home
 import com.lncdriver.model.SavePref
+import com.lncdriver.utils.PermissionUtils
+import org.json.JSONObject
 import java.io.Serializable
+import java.util.*
 
 /**
  * Create by Siru Malayil on 26-04-2023.
  */
-class DbhAssignedRidesDetails : Fragment() {
+
+const val TAG = "DBHRide"
+val permissions = arrayOf(
+    android.Manifest.permission.ACCESS_FINE_LOCATION,
+    android.Manifest.permission.ACCESS_COARSE_LOCATION,
+)
+class DbhAssignedRidesDetails : BaseActivity() {
 
     private var binding: FragmentDbhAssignedRideDetailsBinding? = null
     private var rideData: DbhAssignedRideData? = null
     private var dbhViewModel: DbhViewModel? = null
     private var preferences: SavePref? = null
 
-    companion object {
-        fun newInstance(rideData: DbhAssignedRideData? = null) = DbhAssignedRidesDetails().apply {
-            this.rideData = rideData
-        }
-    }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentDbhAssignedRideDetailsBinding.inflate(layoutInflater, container, false)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = FragmentDbhAssignedRideDetailsBinding.inflate(layoutInflater)
+        setContentView(binding?.root)
         dbhViewModel = ViewModelProvider(this)[DbhViewModel::class.java]
-        return binding?.root
-    }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        rideData = intent?.extras?.getParcelable(DbhUtils.DBH_RIDE_DATA) as? DbhAssignedRideData
+
+        checkLocationPermission()
+
         preferences = SavePref()
-        preferences?.SavePref(activity)
+        preferences?.SavePref(this)
 
         setViewData()
         onClickListener()
+
     }
+
+    private fun checkLocationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!PermissionUtils.hasPermissions(Home.mcontext, *permissions)) {
+                requestPermissions(
+                    permissions, Home.MY_PERMISSIONS_REQUEST_LOCATION
+                )
+            } else {
+                getCurrentLocation()
+            }
+        } else {
+            getCurrentLocation()
+        }
+    }
+
 
     private fun onClickListener() {
         binding?.btnChat?.setOnClickListener {
             val dmap = HashMap<String, Any>()
             dmap["userid"] = rideData?.user_id ?: ""
             startActivity(
-                Intent(activity,ActivityUserChat::class.java).apply {
+                Intent(this,ActivityUserChat::class.java).apply {
                     putExtra("map", dmap as Serializable)
                 }
             )
@@ -77,7 +100,7 @@ class DbhAssignedRidesDetails : Fragment() {
             completeRide()
         }
         binding?.btnCall?.setOnClickListener {
-            (activity as BaseActivity).showAlertMessageDialog(
+            showAlertMessageDialog(
                 message = "Are you sure want to call?",
                 negativeButton = true,
                 fragmentCallback = object : FragmentCallback {
@@ -96,7 +119,7 @@ class DbhAssignedRidesDetails : Fragment() {
         }
 
         binding?.btnStartRide?.setOnClickListener {
-            (activity as? BaseActivity)?.showAlertMessageDialog(
+            showAlertMessageDialog(
                 message = "Are you sure want to start this ride!",
                 negativeButton = true,
                 fragmentCallback = object : FragmentCallback {
@@ -111,7 +134,7 @@ class DbhAssignedRidesDetails : Fragment() {
             )
         }
         binding?.btnCancelRide?.setOnClickListener {
-            (activity as? BaseActivity)?.showAlertMessageDialog(
+            showAlertMessageDialog(
                 message = "Are you sure want to cancel this ride ?",
                 negativeButton = true,
                 fragmentCallback = object : FragmentCallback {
@@ -131,16 +154,64 @@ class DbhAssignedRidesDetails : Fragment() {
         dbhViewModel?.cancelDbhRide(
             driverId = preferences?.userId ?: "",
             rideId = rideData?.id ?: ""
-        )?.observe(viewLifecycleOwner) { result ->
+        )?.observe(this) { result ->
             when(result.status) {
-                Resource.Status.LOADING -> { activity?.let { ProgressCaller.showProgressDialog(it) }}
+                Resource.Status.LOADING -> { ProgressCaller.showProgressDialog(this)}
                 Resource.Status.SUCCESS -> {
-
+                    showAlertMessageDialog(
+                        message = result?.message,
+                        fragmentCallback = object : FragmentCallback {
+                            override fun onResult(param1: Any?, param2: Any?, param3: Any?) {
+                                finish()
+                            }
+                        }
+                    )
                     ProgressCaller.hideProgressDialog()
                 }
                 Resource.Status.ERROR -> {
-
+                    showAlertMessageDialog(
+                        message = result?.message ?: getString(R.string.something_went_wrong))
                     ProgressCaller.hideProgressDialog()
+                }
+            }
+        }
+    }
+
+    private fun getCurrentLocation() {
+        // Create an instance of the FusedLocationProviderClient
+        val fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+
+        // Check if location permissions are granted
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+            == PackageManager.PERMISSION_GRANTED) {
+
+            // Request the last known location from the FusedLocationProviderClient
+            fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
+                // If the last known location is not null, use its latitude and longitude
+                location?.let {
+                    val latitude = location.latitude
+                    val longitude = location.longitude
+
+                    val geocoder = Geocoder(this@DbhAssignedRidesDetails, Locale.getDefault())
+                    val addresses = geocoder.getFromLocation(latitude, longitude, 1)
+
+                    val address = addresses?.get(0)?.getAddressLine(0)
+                    val city = addresses?.get(0)?.locality
+                    val state = addresses?.get(0)?.adminArea
+                    val country = addresses?.get(0)?.countryName
+                    val postalCode = addresses?.get(0)?.postalCode
+                    val knownName = addresses?.get(0)?.featureName
+
+                    dbhViewModel?.destinationAddress = addresses?.firstOrNull()
+                    dbhViewModel?.destinationLatLng = LatLng(
+                        location.latitude,
+                        location.longitude
+                    )
+
+                    Log.d(
+                        TAG,
+                        "Latitude: $latitude, Longitude: $longitude, Address: $address, City: $city, State: $state, Country: $country, Postal Code: $postalCode, Known Name: $knownName"
+                    )
                 }
             }
         }
@@ -150,27 +221,30 @@ class DbhAssignedRidesDetails : Fragment() {
      * Started Ride will complete here, API calling
      */
     private fun completeRide() {
-        dbhViewModel?.dbhCompleteRide(
-            userId = rideData?.user_id ?: "",
-            bookingId = rideData?.id ?: "",
-            payDateTime = DbhUtils.getCurrentDateAndTime() ?: "",
-            endTime = DbhUtils.getCurrentDateAndTime() ?: ""
-        )?.observe(viewLifecycleOwner) { result ->
+        val dbhCompleteRide = JSONObject()
+            .put("userid", rideData?.user_id)
+            .put("booking_id", rideData?.id)
+            .put("pay_datetime", DbhUtils.getCurrentDateAndTime())
+            .put("end_time", DbhUtils.getCurrentDateAndTime())
+            .put("d_address", dbhViewModel?.destinationAddress?.getAddressLine(0))
+            .put("d_lat", dbhViewModel?.destinationLatLng?.latitude)
+            .put("d_long", dbhViewModel?.destinationLatLng?.longitude)
+        dbhViewModel?.dbhCompleteRide(dbhCompleteRide)?.observe(this) { result ->
             when(result.status) {
-                Resource.Status.LOADING -> { activity?.let { ProgressCaller.showProgressDialog(it) }}
+                Resource.Status.LOADING -> { ProgressCaller.showProgressDialog(this) }
                 Resource.Status.SUCCESS -> {
-                    (activity as? BaseActivity)?.showAlertMessageDialog(
+                    showAlertMessageDialog(
                         message = result.data?.data?.firstOrNull()?.msg,
                         fragmentCallback = object : FragmentCallback{
                             override fun onResult(param1: Any?, param2: Any?, param3: Any?) {
-                                activity?.supportFragmentManager?.popBackStackImmediate()
+                                finish()
                             }
                         }
                     )
                     ProgressCaller.hideProgressDialog()
                 }
                 Resource.Status.ERROR -> {
-                    (activity as? BaseActivity)?.showAlertMessageDialog(
+                    showAlertMessageDialog(
                         message = result.data?.data?.firstOrNull()?.msg)
                     ProgressCaller.hideProgressDialog()
                 }
@@ -186,17 +260,17 @@ class DbhAssignedRidesDetails : Fragment() {
             driverId = preferences?.userId ?: "",
             rideId = rideData?.id ?: "",
             time = rideData?.time ?: ""
-        )?.observe(viewLifecycleOwner) { result ->
+        )?.observe(this) { result ->
             when(result.status) {
-                Resource.Status.LOADING -> { activity?.let { ProgressCaller.showProgressDialog(it) }}
+                Resource.Status.LOADING -> { ProgressCaller.showProgressDialog(this) }
                 Resource.Status.SUCCESS -> {
                     val response = result.data
                     if (response?.status == "1") {
-                        (activity as BaseActivity).showAlertMessageDialog(
+                        showAlertMessageDialog(
                             message = response.msg,
                             fragmentCallback = object : FragmentCallback {
                                 override fun onResult(param1: Any?, param2: Any?, param3: Any?) {
-                                    activity?.supportFragmentManager?.popBackStackImmediate()
+                                    finish()
                                 }
                             }
                         )
@@ -204,7 +278,7 @@ class DbhAssignedRidesDetails : Fragment() {
                     ProgressCaller.hideProgressDialog()
                 }
                 Resource.Status.ERROR -> {
-                    (activity as BaseActivity).showAlertMessageDialog(
+                    showAlertMessageDialog(
                         message = result.data?.msg ?: getString(R.string.something_went_wrong)
                     )
                     ProgressCaller.hideProgressDialog()
@@ -226,7 +300,7 @@ class DbhAssignedRidesDetails : Fragment() {
             mapIntent.setPackage("com.google.android.apps.maps")
             startActivity(mapIntent)
         } catch (anf: ActivityNotFoundException) {
-            (activity as BaseActivity).showAlertMessageDialog(
+            showAlertMessageDialog(
                 message = "Please Install Google Maps "
             )
         } catch (ex: Exception) {
@@ -239,20 +313,18 @@ class DbhAssignedRidesDetails : Fragment() {
      * will invoke dialer dashboard
      */
     private fun callPermission(number: String) {
-        activity?.let { activity ->
-            if (ContextCompat.checkSelfPermission(
-                    activity,
-                    Manifest.permission.CALL_PHONE
-                ) == PackageManager.PERMISSION_GRANTED
-            ) {
-                getCall(number)
-            } else {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    requestPermissions(
-                        arrayOf(Manifest.permission.CALL_PHONE),
-                        100
-                    )
-                }
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.CALL_PHONE
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            getCall(number)
+        } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestPermissions(
+                    arrayOf(Manifest.permission.CALL_PHONE),
+                    100
+                )
             }
         }
     }

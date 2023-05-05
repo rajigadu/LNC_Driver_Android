@@ -1,5 +1,6 @@
 package com.lncdriver.dbh.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -28,9 +29,10 @@ class DbhAssignedRidesAdapter(private val callback: FragmentCallback? = null): L
         ): Boolean = oldItem == newItem
     }
 
-    inner class ViewHolder(val binding: LayoutDbhAssignRidesBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: LayoutDbhAssignRidesBinding): RecyclerView.ViewHolder(binding.root) {
+        @SuppressLint("SetTextI18n")
         fun bindView(rideData: DbhAssignedRideData?) {
-            binding.valueDateAndTime.text = rideData?.otherdate
+            binding.valueDateAndTime.text = "${rideData?.otherdate} ${rideData?.time}"
             binding.valueNotes.text = rideData?.notes
             binding.valuePickup.text = rideData?.pickup_address
             binding.root.setOnClickListener {

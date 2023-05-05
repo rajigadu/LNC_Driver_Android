@@ -42,7 +42,10 @@ public interface ServiceApi {
             @Query("user_id") String userId,
             @Query("booking_id") String bookingId,
             @Query("payDateTime") String payDateTime,
-            @Query("end_time") String endTime
+            @Query("end_time") String endTime,
+            @Query("d_address") String destAddress,
+            @Query("d_lat") String destLatitude,
+            @Query("d_long") String destLongitude
     );
 
     @POST(Settings.URL_DBH_RIDE_HISTORY)
