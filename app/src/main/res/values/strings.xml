@@ -99,13 +99,14 @@
     <string name="customer_name">Customer Name:</string>
     <string name="notes">Notes :</string>
     <string name="distance">Distance :</string>
-    <string name="ride_date">Ride Date :</string>
+    <string name="ride_date">Ride Date</string>
     <string name="ride_start">Ride Start</string>
     <string name="hourly_rate">Hourly Rate</string>
     <string name="ride_total_time">Ride Total Time</string>
     <string name="enter_your_messege">Enter Your Message</string>
     <string name="reason_for_cancelling_ride">Reason For Cancelling Ride</string>
     <string name="submit">Submit</string>
+    <string name="column">:</string>
 
 
 </resources>

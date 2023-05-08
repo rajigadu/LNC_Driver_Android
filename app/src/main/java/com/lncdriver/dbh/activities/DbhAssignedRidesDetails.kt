@@ -259,7 +259,7 @@ class DbhAssignedRidesDetails : BaseActivity() {
         dbhViewModel?.dbhStartRide(
             driverId = preferences?.userId ?: "",
             rideId = rideData?.id ?: "",
-            time = rideData?.time ?: ""
+            time = DbhUtils.getCurrentDateAndTime() ?: ""
         )?.observe(this) { result ->
             when(result.status) {
                 Resource.Status.LOADING -> { ProgressCaller.showProgressDialog(this) }

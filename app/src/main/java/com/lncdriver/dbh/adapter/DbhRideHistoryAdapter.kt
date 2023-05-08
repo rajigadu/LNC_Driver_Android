@@ -36,10 +36,9 @@ class DbhRideHistoryAdapter(private val callback: FragmentCallback? = null)
             binding.customerName.text = "${rideHistory?.first_name} ${rideHistory?.last_name}"
             binding.date.text = "${rideHistory?.date} ${rideHistory?.time}"
             binding.pickupAddress.text = rideHistory?.pickup_address
-            binding.rideTotalTime.text = "${rideHistory?.ride_total_time}:0 Hrs"
+            binding.rideTotalTime.text = "${rideHistory?.ride_total_time}:${rideHistory?.ride_total_minute} Hrs"
             binding.hourlyRate.text =  "${rideHistory?.hourly_rate}/Hrs"
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
